@@ -14,3 +14,6 @@
 (el-get-bundle jedi)
 (el-get-bundle clang-format)
 (el-get-bundle magit)
+(el-get-bundle 'glsl-mode)
+(el-get-bundle dockerfile-mode)
+(el-get-bundle rust-mode)
