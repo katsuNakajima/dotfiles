@@ -17,3 +17,6 @@
 (el-get-bundle 'glsl-mode)
 (el-get-bundle dockerfile-mode)
 (el-get-bundle rust-mode)
+(el-get-bundle racer)
+(el-get-bundle company-mode)
+(el-get-bundle flycheck-rust)
