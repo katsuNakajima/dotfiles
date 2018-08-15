@@ -256,3 +256,8 @@
                              ;;; この辺の設定はお好みで
                              (set (make-variable-buffer-local 'company-idle-delay) 0.1)
                              (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
+
+;;;;--------------------------------------------------------
+;;;; markdown-mode
+;;;;--------------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
