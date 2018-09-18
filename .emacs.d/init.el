@@ -67,7 +67,8 @@
 (setq auto-image-file-mode t)
 
 ;;; バックアップファイルの作成を禁止
-(setq backup-inhibited t)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 
 ;;; 終了時に自動保存ファイルを削除
 (setq delete-auto-save-files t)
@@ -100,6 +101,24 @@
 
 ;; yes or noをy or n
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; ツールバー非表示
+(tool-bar-mode -1)
+
+;; メニューバーを非表示
+(menu-bar-mode -1)
+
+;; スクロールバー非表示
+(set-scroll-bar-mode nil)
+
+;; titilebar file full name
+(setq frame-title-format "%f")
+
+;; ミニバッファの履歴を保存する
+(savehist-mode 1)
+
+;; ミニバッファの履歴の保存数を増やす
+(setq history-length 3000)
 
 ;;;;--------------------------------------------------------
 ;;;;クリップボードにコピー共有
