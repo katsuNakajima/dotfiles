@@ -22,3 +22,5 @@
 (el-get-bundle flycheck-rust)
 (el-get-bundle docker-tramp)
 (el-get-bundle markdown-mode)
+(el-get-bundle py-autopep8)
+(el-get-bundle python-mode)
