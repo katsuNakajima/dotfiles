@@ -204,6 +204,7 @@
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 (yas-global-mode 1)
+
 ;;;;--------------------------------------------------------
 ;;;; magit
 ;;;;--------------------------------------------------------
@@ -217,12 +218,16 @@
 (setq jedi:complete-on-dot t)
 
 ;;;;--------------------------------------------------------
-;;;; autopep8
+;;;; autopep8 & pylint
 ;;;;--------------------------------------------------------
 (require 'python-mode)
 (define-key python-mode-map (kbd "C-c F") 'py-autopep8)          ; バッファ全体のコード整形
 (define-key python-mode-map (kbd "C-c f") 'py-autopep8-region)   ; 選択リジョン内のコード整形
 (add-hook 'before-save-hook 'py-autopep8-before-save)
+(defun tnoda/turn-on-flycheck-mode ()
+  (flycheck-mode 1))
+(add-hook 'python-mode-hook 'tnoda/turn-on-flycheck-mode)
+
 ;;----------------------------------------------------------
 ;; Auto Complete
 ;;----------------------------------------------------------
