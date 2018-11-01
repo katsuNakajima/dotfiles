@@ -194,6 +194,14 @@
   (add-hook 'c-mode-common-hook 'flycheck-mode))
 
 ;;;;--------------------------------------------------------
+;;;; flymake
+;;;;--------------------------------------------------------
+(require 'flymake)
+(custom-set-faces
+  '(flymake-errline ((((class color)) (:background "red"))))
+  '(flymake-warnline ((((class color)) (:background "yellow")))))
+
+;;;;--------------------------------------------------------
 ;;;; yasnippet
 ;;;;--------------------------------------------------------
 (setq helm-yas-space-match-any-greedy t)
@@ -220,13 +228,43 @@
 ;;;;--------------------------------------------------------
 ;;;; autopep8 & pylint
 ;;;;--------------------------------------------------------
+(add-to-list 'load-path "~/.local/bin")
 (require 'python-mode)
 (define-key python-mode-map (kbd "C-c F") 'py-autopep8)          ; バッファ全体のコード整形
 (define-key python-mode-map (kbd "C-c f") 'py-autopep8-region)   ; 選択リジョン内のコード整形
 (add-hook 'before-save-hook 'py-autopep8-before-save)
-(defun tnoda/turn-on-flycheck-mode ()
-  (flycheck-mode 1))
-(add-hook 'python-mode-hook 'tnoda/turn-on-flycheck-mode)
+
+;; Configure flymake for Python
+(when (load "flymake" t)
+  (defun flymake-pylint-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "epylint" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pylint-init)))
+;; Set as a minor mode for Python
+(add-hook 'python-mode-hook '(lambda () (flymake-mode)))
+;; Configure to wait a bit longer after edits before starting
+(setq-default flymake-no-changes-timeout '3)
+;; Keymaps to navigate to the errors
+(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cn" 'flymake-goto-next-error)))
+(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cp" 'flymake-goto-prev-error)))
+;; To avoid having to mouse hover for the error message, these functions make flymake error messages
+;; appear in the minibuffer
+(defun show-fly-err-at-point ()
+  "If the cursor is sitting on a flymake error, display the message in the minibuffer"
+  (require 'cl)
+  (interactive)
+  (let ((line-no (line-number-at-pos)))
+    (dolist (elem flymake-err-info)
+      (if (eq (car elem) line-no)
+      (let ((err (car (second elem))))
+        (message "%s" (flymake-ler-text err)))))))
+
+(add-hook 'post-command-hook 'show-fly-err-at-point)
 
 ;;----------------------------------------------------------
 ;; Auto Complete

@@ -21,6 +21,7 @@
 (el-get-bundle 'company-mode)
 (el-get-bundle 'flycheck-rust)
 (el-get-bundle 'flycheck)
+(el-get-bundle 'flymake)
 (el-get-bundle 'docker-tramp)
 (el-get-bundle 'markdown-mode)
 (el-get-bundle 'py-autopep8)
