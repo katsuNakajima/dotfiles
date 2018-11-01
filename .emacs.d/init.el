@@ -196,10 +196,10 @@
 ;;;;--------------------------------------------------------
 ;;;; flymake
 ;;;;--------------------------------------------------------
-(require 'flymake)
-(custom-set-faces
-  '(flymake-errline ((((class color)) (:background "red"))))
-  '(flymake-warnline ((((class color)) (:background "yellow")))))
+;(require 'flymake)
+;(custom-set-faces
+;  '(flymake-errline ((((class color)) (:background "red"))))
+;  '(flymake-warnline ((((class color)) (:background "yellow")))))
 
 ;;;;--------------------------------------------------------
 ;;;; yasnippet
