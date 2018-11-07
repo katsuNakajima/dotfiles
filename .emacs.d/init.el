@@ -178,9 +178,8 @@
 (load custom-file t)
 
 ;;;;--------------------------------------------------------
-;;;; flycheck
+;;;; flycheck for C++
 ;;;;--------------------------------------------------------
-(add-hook 'after-init-hook #'global-flycheck-mode)
 (when (require 'flycheck nil 'noerror)
   (custom-set-variables
    ;; エラーをポップアップで表示
@@ -192,14 +191,6 @@
   (define-key flycheck-mode-map (kbd "C-M-n") 'flycheck-next-error)
   (define-key flycheck-mode-map (kbd "C-M-p") 'flycheck-previous-error)
   (add-hook 'c-mode-common-hook 'flycheck-mode))
-
-;;;;--------------------------------------------------------
-;;;; flymake
-;;;;--------------------------------------------------------
-;(require 'flymake)
-;(custom-set-faces
-;  '(flymake-errline ((((class color)) (:background "red"))))
-;  '(flymake-warnline ((((class color)) (:background "yellow")))))
 
 ;;;;--------------------------------------------------------
 ;;;; yasnippet
@@ -226,7 +217,7 @@
 (setq jedi:complete-on-dot t)
 
 ;;;;--------------------------------------------------------
-;;;; autopep8 & pylint
+;;;; autopep8 & pylint on flymake
 ;;;;--------------------------------------------------------
 (add-to-list 'load-path "~/.local/bin")
 (require 'python-mode)
