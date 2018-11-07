@@ -178,7 +178,7 @@
 (load custom-file t)
 
 ;;;;--------------------------------------------------------
-;;;; flycheck for C++
+;;;; flycheck for C
 ;;;;--------------------------------------------------------
 (when (require 'flycheck nil 'noerror)
   (custom-set-variables
