@@ -1,3 +1,4 @@
+autopep8==1.4
 Automat==0.7.0
 asn1crypto==0.24.0
 attrs==18.2.0
@@ -13,6 +14,7 @@ keyrings.alt==3.0
 Mako==1.0.7
 MarkupSafe==1.0
 pbr==3.1.1
+pep8==1.7.1
 pycodestyle==2.4.0
 PyHamcrest==1.9.0
 six==1.11.0

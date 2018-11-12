@@ -1,6 +1,4 @@
-autopep8==1.4
 gps==3.17
-pep8==1.7.1
 psutil==5.4.2
 pycairo==1.16.2
 pycrypto==2.6.1
