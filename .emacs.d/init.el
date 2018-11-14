@@ -212,7 +212,7 @@
 (setq jedi:complete-on-dot t)
 
 ;;;;--------------------------------------------------------
-;;;; autopep8 & pylint on flymake
+;;;; autopep8 & pylint on flycheck
 ;;;;--------------------------------------------------------
 (add-to-list 'load-path "~/.local/bin")
 (require 'python-mode)
@@ -220,37 +220,9 @@
 (define-key python-mode-map (kbd "C-c f") 'py-autopep8-region)   ; 選択リジョン内のコード整形
 (add-hook 'before-save-hook 'py-autopep8-before-save)
 
-;; Configure flymake for Python
-(when (load "flymake" t)
-  (defun flymake-pylint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "epylint" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pylint-init)))
-;; Set as a minor mode for Python
-(add-hook 'python-mode-hook '(lambda () (flymake-mode)))
-;; Configure to wait a bit longer after edits before starting
-(setq-default flymake-no-changes-timeout '3)
-;; Keymaps to navigate to the errors
-(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cn" 'flymake-goto-next-error)))
-(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cp" 'flymake-goto-prev-error)))
-;; To avoid having to mouse hover for the error message, these functions make flymake error messages
-;; appear in the minibuffer
-(defun show-fly-err-at-point ()
-  "If the cursor is sitting on a flymake error, display the message in the minibuffer"
-  (require 'cl)
-  (interactive)
-  (let ((line-no (line-number-at-pos)))
-    (dolist (elem flymake-err-info)
-      (if (eq (car elem) line-no)
-      (let ((err (car (second elem))))
-        (message "%s" (flymake-ler-text err)))))))
-
-(add-hook 'post-command-hook 'show-fly-err-at-point)
+(defun flycheck-python-setup ()
+  (flycheck-mode))
+(add-hook 'python-mode-hook #'flycheck-python-setup)
 
 ;;----------------------------------------------------------
 ;; Auto Complete
@@ -314,16 +286,17 @@
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 (setq rust-format-on-save t)
-
 ;;; racerやrustfmt、コンパイラにパスを通す
 (add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
 ;;; rust-modeでrust-format-on-saveをtにすると自動でrustfmtが走る
 (eval-after-load "rust-mode"
   '(setq-default rust-format-on-save t))
-;;; rustのファイルを編集するときにracerとflycheckを起動する
+;;; rustのファイルを編集するときにflycheckを起動する
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+;;; rustのファイルを編集するときにracerを起動する
 (add-hook 'rust-mode-hook (lambda ()
-                            (racer-mode)
-                            (flycheck-rust-setup)))
+                            (racer-mode)))
 ;;; racerのeldocサポートを使う
 (add-hook 'racer-mode-hook #'eldoc-mode)
 ;;; racerの補完サポートを使う
