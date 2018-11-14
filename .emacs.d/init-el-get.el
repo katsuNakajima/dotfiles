@@ -27,3 +27,4 @@
 (el-get-bundle 'py-autopep8)
 (el-get-bundle 'python-mode)
 (el-get-bundle 'toml-mode)
+(el-get-bundle 'use-package)
