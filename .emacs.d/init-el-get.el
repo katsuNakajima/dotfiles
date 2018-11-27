@@ -30,3 +30,4 @@
 (el-get-bundle 'python-mode)
 (el-get-bundle 'toml-mode)
 (el-get-bundle 'use-package)
+(el-get-bundle 'rtags)
