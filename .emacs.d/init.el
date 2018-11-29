@@ -326,3 +326,10 @@
 ;;;;--------------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
 (put 'upcase-region 'disabled nil)
+
+;;;;--------------------------------------------------------
+;;;; json
+;;;;--------------------------------------------------------
+(defun jq-format (beg end)
+  (interactive "r")
+  (shell-command-on-region beg end "jq ." nil t))
