@@ -242,7 +242,7 @@
 (global-set-key (kbd "C-c r") 'clang-format-region)
 (global-set-key (kbd "C-c u") 'clang-format-buffer)
 
-(setq clang-format-style-option "Google")
+(setq clang-format-style-option "google")
 
 ;;;;--------------------------------------------------------
 ;;;; rtags
