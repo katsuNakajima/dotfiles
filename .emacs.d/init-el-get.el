@@ -31,3 +31,6 @@
 (el-get-bundle 'toml-mode)
 (el-get-bundle 'use-package)
 (el-get-bundle 'rtags)
+(el-get-bundle 'go-mode)
+(el-get-bundle 'go-autocomplete)
+(el-get-bundle 'go-eldoc)
