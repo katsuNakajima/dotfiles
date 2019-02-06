@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 source /usr/share/bash-completion/completions/git
-source ~/.git-prompt.sh
+#source ~/.git-prompt.sh
 
 # プロンプトに各種情報を表示
 GIT_PS1_SHOWDIRTYSTATE=1
