@@ -185,7 +185,7 @@
   (define-key flycheck-mode-map (kbd "C-M-p") 'flycheck-previous-error)
   (add-hook 'after-init-hook #'global-flycheck-mode))
 (with-eval-after-load 'flycheck
-  (flycheck-inline-mode))
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
 ;;;;--------------------------------------------------------
 ;;;; yasnippet
