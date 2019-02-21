@@ -35,3 +35,4 @@
 (el-get-bundle 'go-autocomplete)
 (el-get-bundle 'go-eldoc)
 (el-get-bundle 'yaml-mode)
+(el-get-bundle 'atomic-chrome)
