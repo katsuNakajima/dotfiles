@@ -29,3 +29,9 @@ fi
 export PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH=$HOME/dev
 export PATH=$PATH:$GOPATH/bin
+
+if [ "$TILIX_ID" ]; then
+
+  pokemon; clear
+
+fi
