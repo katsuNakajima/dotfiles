@@ -36,3 +36,4 @@
 (el-get-bundle 'go-eldoc)
 (el-get-bundle 'yaml-mode)
 (el-get-bundle 'atomic-chrome)
+(el-get-bundle 'init-loader)
