@@ -1,5 +1,5 @@
-;;;;--------------------------------------------------------
-;;;; toml-mode
-;;;;--------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
-(put 'upcase-region 'disabled nil)
+(use-package toml-mode
+  :mode (("\\.toml\\'" . toml-mode))
+  :config
+  ((put 'upcase-region 'disabled nil))
+  )

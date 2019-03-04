@@ -1,9 +1,11 @@
-;;;;--------------------------------------------------------
-;;;; flycheck
-;;;;--------------------------------------------------------
-(when (require 'flycheck nil 'noerror)
-  (define-key flycheck-mode-map (kbd "C-M-n") 'flycheck-next-error)
-  (define-key flycheck-mode-map (kbd "C-M-p") 'flycheck-previous-error)
-  (add-hook 'after-init-hook #'global-flycheck-mode))
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+(add-to-list 'load-path "~/.local/bin")
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  :config
+  (add-hook 'python-mode-hook #'flycheck-python-setup)
+  (use-package flycheck-inline
+    :config
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
+    )
+  )

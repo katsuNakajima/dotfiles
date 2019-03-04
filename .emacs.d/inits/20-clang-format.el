@@ -1,7 +1,5 @@
-;;;;--------------------------------------------------------
-;;;; clang-format
-;;;;--------------------------------------------------------
-(global-set-key (kbd "C-c r") 'clang-format-region)
-(global-set-key (kbd "C-c u") 'clang-format-buffer)
-
-(setq clang-format-style-option "file")
+(use-package clang-format
+  :config
+  (bind-key "C-c r" 'clang-format-region)
+  (bind-key "C-c u" 'clang-format-buffer)
+  (setq clang-format-style-option "file"))

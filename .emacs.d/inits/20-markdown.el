@@ -1,4 +1,5 @@
-;;;;--------------------------------------------------------
-;;;; markdown-mode
-;;;;--------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(use-package markdown-mode
+  :mode (("\\.text\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)
+         ("\\.md\\'" . markdown-mode))
+  )

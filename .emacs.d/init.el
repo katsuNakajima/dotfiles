@@ -1,15 +1,18 @@
-;;;;--------------------------------------------------------
-;;;; el-get
-;;;;--------------------------------------------------------
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(when load-file-name
-  (setq user-emacs-directory (file-name-directory load-file-name)))
-(load (concat user-emacs-directory "init-el-get.el"))
-(package-initialize)
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
-;;;;--------------------------------------------------------
-;;;; init-loader
-;;;;--------------------------------------------------------
-
-(setq init-loader-show-log-after-init nil)
+(use-package init-loader)
 (init-loader-load (concat user-emacs-directory "inits"))
