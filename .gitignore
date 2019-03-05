@@ -4,7 +4,6 @@
 .emacs.d/.python-environments
 .emacs.d/ac-comphist.dat
 .emacs.d/auto-save-list/
-.emacs.d/custom_setttings.el
 .emacs.d/network-security.data
 .emacs.d/tramp
 .bash_logout

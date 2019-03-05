@@ -7,8 +7,14 @@
    ("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files)
    ("C-<f6>" . helm-ls-git-ls)
+   ()
    ("C-x C-d" . helm-browse-project))
   :config
+  (define-key global-map [remap find-file] 'helm-find-files)
+  (define-key global-map [remap occur] 'helm-occur)
+  (define-key global-map [remap list-buffers] 'helm-buffers-list)
+  (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+  
   (use-package helm-ls-git)
   (custom-set-variables
    '(helm-source-ls-git (helm-ls-git-build-ls-git-source))

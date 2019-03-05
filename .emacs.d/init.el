@@ -16,3 +16,6 @@
 
 (use-package init-loader)
 (init-loader-load (concat user-emacs-directory "inits"))
+
+(setq custom-file "~/.emacs.d/custom_setttings.el")
+(load custom-file t)

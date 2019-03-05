@@ -35,7 +35,7 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-alias emacs='emacs -nw'
+#alias emacs='emacs -nw'
 
 # この行は現在のパスを表示する設定です。ブランチを表示して色をつける設定とは関係ありません
 RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
