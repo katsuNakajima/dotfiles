@@ -5,9 +5,15 @@
 .emacs.d/ac-comphist.dat
 .emacs.d/auto-save-list/
 .emacs.d/network-security.data
+.emacs.d/amx-items
+.emacs.d/recentf
+.emacs.d/straight/
+.emacs.d/transient/
+.emacs.d/url/
 .emacs.d/tramp
 .bash_logout
 .cache/
+.cargo/
 .config/
 .gnome/
 .gnupg/
@@ -27,3 +33,7 @@ core
 /mnt/
 /env/
 .*_history
+.multirust
+.rustup/
+.viminfo
+.zprofile
