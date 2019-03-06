@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.local/bin")
 (use-package flycheck
   :config
   (use-package flycheck-inline
