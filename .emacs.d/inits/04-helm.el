@@ -7,7 +7,10 @@
    ("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files)
    ("C-<f6>" . helm-ls-git-ls)
-   ()
+   ("C-x C-r" . helm-recentf)
+   ("C-M-z" . helm-resume)
+   ("M-g g" . helm-do-grep)
+   ("M-g l" . helm-occur-from-isearch)
    ("C-x C-d" . helm-browse-project))
   :config
   (define-key global-map [remap find-file] 'helm-find-files)
