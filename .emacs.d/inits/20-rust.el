@@ -1,1 +1,3 @@
-(use-package rustic)
+(use-package rustic
+  :after (lsp-mode)
+  )
