@@ -1,2 +1,3 @@
-(use-package arduino-mode)
+(use-package arduino-mode
 :mode (("\\.ino\\'" . arduino-mode))
+)
