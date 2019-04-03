@@ -53,11 +53,6 @@
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
 
-;;; 行番号・列番号を表示
-(line-number-mode 1)
-(column-number-mode 1)
-(global-linum-mode 0)
-
 ;;; 対応する括弧を強調表示
 (setq show-paren-delay 0) ;; 0秒(遅延なし)で表示
 (show-paren-mode t)

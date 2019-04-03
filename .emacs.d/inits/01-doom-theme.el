@@ -21,7 +21,7 @@
       :hook
       (after-init . doom-modeline-mode)
       :config
-      (line-number-mode 0)
+      (line-number-mode 1)
       (column-number-mode 0)
       (doom-modeline-def-modeline 'main
     '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
