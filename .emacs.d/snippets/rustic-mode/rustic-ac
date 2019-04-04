@@ -1,8 +1,11 @@
 # -*- mode: snippet -*-
-# name: input-macro
-# key: inp
+# name: rust-ac
+# key: rac
 # --
-
+# -*- mode: snippet -*-
+# name: ac
+# key: ac
+# --
 #[allow(unused_macros)]
 macro_rules! parse_line {
     ( $t:ty ) => (
@@ -13,7 +16,7 @@ macro_rules! parse_line {
             iter.next().unwrap().parse::<$t>().unwrap()
         }
     );
- 
+
     ( $( $t:ty), +) => (
         {
             let mut line = String::new();
@@ -23,7 +26,7 @@ macro_rules! parse_line {
         }
     );
 }
- 
+
 #[allow(unused_macros)]
 macro_rules! read_line {
     () => (
@@ -35,7 +38,7 @@ macro_rules! read_line {
         }
     )
 }
- 
+
 #[allow(unused_macros)]
 macro_rules! parse_vec {
     ( $t:ty ) => (
