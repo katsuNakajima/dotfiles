@@ -229,29 +229,6 @@
           (format "%s/%s" work-done-str effort-str))
       (format "%s" work-done-str))))
 
-(use-package org-pomodoro
-  :after org-agenda
-  :custom
-  (org-pomodoro-ask-upon-killing t)
-  (org-pomodoro-format "%s")
-  (org-pomodoro-short-break-format "%s")
-  (org-pomodoro-long-break-format  "%s")
-  :custom-face
-  (org-pomodoro-mode-line ((t (:foreground "#ff5555"))))
-  (org-pomodoro-mode-line-break   ((t (:foreground "#50fa7b"))))
-  :hook
-  (org-pomodoro-started . (lambda () (notifications-notify
-                                      :title "org-pomodoro"
-                                      :body "Let's focus for 25 minutes!"
-                                      :app-icon "~/.emacs.d/img/001-food-and-restaurant.png")))
-  (org-pomodoro-finished . (lambda () (notifications-notify
-                                       :title "org-pomodoro"
-                                       :body "Well done! Take a break."
-                                       :app-icon "~/.emacs.d/img/004-beer.png")))
-  :config
-  :bind (:map org-agenda-mode-map
-              ("p" . org-pomodoro)))
-
 (use-package tramp
   :config
   (setq tramp-copy-size-limit nil)
