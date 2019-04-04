@@ -334,3 +334,7 @@
 (use-package rustic
   :after (lsp-mode)
   )
+
+(use-package python-mode
+  :config
+  (add-hook 'python-mode-hook #'lsp))
