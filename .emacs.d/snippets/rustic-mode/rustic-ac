@@ -2,10 +2,6 @@
 # name: rust-ac
 # key: rac
 # --
-# -*- mode: snippet -*-
-# name: ac
-# key: ac
-# --
 #[allow(unused_macros)]
 macro_rules! parse_line {
     ( $t:ty ) => (
