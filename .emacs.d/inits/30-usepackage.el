@@ -179,6 +179,7 @@
     ("C-c i"   . lsp-ui-peek-find-implementation)
     ("C-c m"   . lsp-ui-imenu)
     ("C-c s"   . lsp-ui-sideline-mode)
+    ("C-c f"   . lsp-format-buffer)
     ("C-c d"   . ladicle/toggle-lsp-ui-doc))
     :hook
     (lsp-mode . lsp-ui-mode))
