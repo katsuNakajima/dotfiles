@@ -214,6 +214,10 @@
          ("\\.md\\'" . markdown-mode))
   )
 
+(use-package arduino-mode
+  :mode (("\\.ino\\'" . arduino-mode))
+  )
+
 (defun ladicle/task-clocked-time ()
   "Return a string with the clocked time and effort, if any"
   (interactive)
