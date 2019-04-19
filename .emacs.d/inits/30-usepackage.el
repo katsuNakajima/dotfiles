@@ -218,6 +218,10 @@
   :mode (("\\.ino\\'" . arduino-mode))
   )
 
+(use-package cuda-mode
+  :mode (("\\.cu\\'" . cuda-mode))
+  )
+
 (defun ladicle/task-clocked-time ()
   "Return a string with the clocked time and effort, if any"
   (interactive)
