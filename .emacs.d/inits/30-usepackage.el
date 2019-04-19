@@ -328,6 +328,11 @@
 
 (use-package amx)
 
+(use-package editorconfig
+  :init
+  (editorconfig-mode 1)
+)
+
 (use-package rustic
   :after (lsp-mode)
   )
