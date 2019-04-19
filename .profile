@@ -26,11 +26,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export PATH=$PATH:/usr/local/go/bin
-export PATH="$PATH:$HOME/.cargo/bin"
-export GOPATH=$HOME/dev
-export PATH=$PATH:$GOPATH/bin
-
 if [ "$TILIX_ID" ]; then
 
   pokemon; clear

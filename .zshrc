@@ -61,3 +61,6 @@ alias ls="ls --color"
 
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
+export GOPATH=$HOME/dev
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:/usr/local/go/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/dotnet
