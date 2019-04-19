@@ -196,6 +196,17 @@
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
 
+(use-package flycheck
+  :config
+  (add-hook 'csharp-mode-hook #'flycheck-mode)
+  )
+
+(use-package flycheck-inline
+  :after flycheck
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
+  )
+
 (use-package flymake
   :config
   (setq flymake-no-changes-timeout 2))
@@ -324,3 +335,11 @@
 (use-package python-mode
   :config
   (add-hook 'python-mode-hook #'lsp))
+
+(use-package omnisharp
+  :hook (csharp-mode . omnisharp-mode)
+  :config
+  (setq omnisharp-server-executable-path "/home/nakaji/omnisharp-1.32.18/run")
+  (add-to-list 'company-backends 'company-omnisharp)
+  (add-hook 'csharp-mode-hook #'company-mode)
+  )
