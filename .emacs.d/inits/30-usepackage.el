@@ -130,6 +130,9 @@
   (lsp-response-timeout 5)
   (lsp-prefer-flymake 'flymake)
   (lsp-enable-completion-at-point nil)
+  :commands lsp
+  :hook
+  (sh-mode . lsp)
   :bind
   (:map lsp-mode-map
         ("C-c r"   . lsp-rename))
