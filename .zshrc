@@ -35,7 +35,6 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-#alias emacs='emacs -nw'
 
 # この行は現在のパスを表示する設定です。ブランチを表示して色をつける設定とは関係ありません
 RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
@@ -64,9 +63,3 @@ zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'c
 export GOPATH=$HOME/dev
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/dotnet:$HOME/.npm-global/bin
-
-##if [ "$TILIX_ID" ]; then
-
-##  pokemon; clear
-
-##fi
