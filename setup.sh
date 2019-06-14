@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOTFILES_DIR=`pwd`
-DOT_FILES=( .clang-format .tmux.conf .zshrc .emacs.d )
+DOT_FILES=( .clang-format .tmux.conf .vimrc .zshrc .emacs.d )
 
 for file in ${DOT_FILES[@]}
 do
