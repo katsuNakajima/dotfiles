@@ -7,6 +7,7 @@
 .emacs.d/network-security.data
 .emacs.d/amx-items
 .emacs.d/recentf
+.emacs.d/.lsp-session-v1
 !.emacs.d/straight/
 .emacs.d/straight/*
 !.emacs.d/straight/versions
