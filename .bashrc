@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source /usr/share/bash-completion/completions/git
+#source /usr/share/bash-completion/completions/git
 #source ~/.git-prompt.sh
 
 # プロンプトに各種情報を表示
