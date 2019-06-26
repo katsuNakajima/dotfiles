@@ -199,16 +199,16 @@
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
 
-(use-package flycheck
-  :config
-  (add-hook 'csharp-mode-hook #'flycheck-mode)
-  )
+;(use-package flycheck
+;  :config
+;  (add-hook 'csharp-mode-hook #'flycheck-mode)
+;  )
 
-(use-package flycheck-inline
-  :after flycheck
-  :init
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
-  )
+;(use-package flycheck-inline
+;  :after flycheck
+;  :init
+;  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
+;  )
 
 (use-package flymake
   :config
