@@ -14,6 +14,7 @@
 .emacs.d/transient/
 .emacs.d/url/
 .emacs.d/tramp
+.emacs.d/inits/02-mozc.el
 .bash_logout
 .cache/
 .cargo/
