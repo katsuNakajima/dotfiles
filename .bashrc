@@ -115,6 +115,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+umask 022
 
 #source /usr/share/bash-completion/completions/git
 #source ~/.git-prompt.sh
