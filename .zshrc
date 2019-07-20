@@ -32,12 +32,8 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-# この行は現在のパスを表示する設定です。ブランチを表示して色をつける設定とは関係ありません
-RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
 
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -60,6 +56,9 @@ alias ls="ls --color"
 
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-export GOPATH=$HOME/dev
-export DOTNET_ROOT=$HOME/dotnet
-export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/dotnet:$HOME/.npm-global/bin
+# 共通path設定
+export PATH=$PATH:$HOME/.local/bin:$HOME/.npm-global/bin
+export PATH="$HOME/.cargo/bin:$PATH"
+
+#for WSL permission
+umask 022

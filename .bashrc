@@ -91,7 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-#alias emacs=' emacs -nw'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -115,16 +115,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-umask 022
-
-#source /usr/share/bash-completion/completions/git
-#source ~/.git-prompt.sh
-
-# プロンプトに各種情報を表示
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUPSTREAM=1
-GIT_PS1_SHOWUNTRACKEDFILES=
-GIT_PS1_SHOWSTASHSTATE=1
 
 ############### ターミナルのコマンド受付状態の表示変更
 # \u ユーザ名
@@ -136,5 +126,12 @@ GIT_PS1_SHOWSTASHSTATE=1
 # \[ 表示させない文字列の開始
 # \] 表示させない文字列の終了
 # \$ $
-export PS1='\[\033[1;32m\]\u\[\033[00m\]:\[\033[1;34m\]\w\[\033[1;31m\]$(__git_ps1)\[\033[00m\] \$ '
+export PS1='\[\033[1;32m\]\u\[\033[00m\]:\[\033[1;34m\]\w\[\033[1;31m\]\[\033[00m\] \$ '
 ##############
+
+# 共通path設定
+export PATH=$PATH:$HOME/.local/bin:$HOME/.npm-global/bin
+export PATH="$HOME/.cargo/bin:$PATH"
+
+#for WSL permission
+umask 022
