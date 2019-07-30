@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: python-combination
-# key: py-cmb
+# key: pycmb
 # --
 from math import factorial
 
