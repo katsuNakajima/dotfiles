@@ -2,7 +2,6 @@
 [ -f $HOME/.zshrc.`uname` ] && source $HOME/dotfiles/.zshrc.`uname`
 
 # Set up the prompt
-
 autoload -Uz promptinit
 promptinit
 prompt adam1
@@ -58,6 +57,24 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 alias ls="ls --color"
 
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+
+#ターミナルのタイトル設定
+case "${TERM}" in
+mlterm|kterm*|xterm*)
+    titlechange(){
+        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+    }
+    ;;
+screen*)
+    titlechange(){
+	echo -ne "\033P\033]0;${USER}@${HOST%%.*}:${PWD}\007\033\\"
+    }
+    ;;
+*)
+    titlechange(){
+    }
+    ;;
+esac
 
 # 共通path設定
 export PATH=$PATH:$HOME/.local/bin:$HOME/.npm-global/bin
