@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: python-atcoder
+# key: pyac
+# --
+from sys import stdin
+
+# 基本的な入出力
+a = stdin.readline().rstrip()
+
+# 数値への変換
+n = int(stdin.readline().rstrip())
+
+# 空白で分割
+l = stdin.readline().rstrip().split()
+A, B, C = stdin.readline().rstrip().split()
+
+# 空白で分割しつつ数値に変換
+A, B, C = [int(x) for x in stdin.readline().rstrip().split()]
+
+# 複数行をまとめて読み込む
+n = int(stdin.readline().rstrip())
+data = [stdin.readline().rstrip().split() for _ in range(n)]
