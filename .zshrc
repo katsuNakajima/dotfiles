@@ -1,3 +1,6 @@
+# loading mac settings
+[ -f $HOME/.zshrc.`uname` ] && source $HOME/dotfiles/.zshrc.`uname`
+
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -62,3 +65,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 #for WSL permission
 umask 022
+
