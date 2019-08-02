@@ -342,6 +342,12 @@
 
 (use-package python-mode
   :config
+  (use-package pipenv
+    :hook (python-mode . pipenv-mode)
+    :init
+    (setq
+     pipenv-projectile-after-switch-function
+     #'pipenv-projectile-after-switch-extended))
   (add-hook 'python-mode-hook #'lsp))
 
 (use-package omnisharp
