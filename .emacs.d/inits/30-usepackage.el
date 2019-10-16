@@ -236,6 +236,10 @@
   :mode (("\\.cu\\'" . cuda-mode))
   )
 
+(use-package cmake-mode
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode))
+  )
+
 (defun ladicle/task-clocked-time ()
   "Return a string with the clocked time and effort, if any"
   (interactive)
