@@ -228,6 +228,16 @@
          ("\\.md\\'" . markdown-mode))
   )
 
+(use-package plantuml-mode
+  :mode (("\\.plantuml\\'" . plantuml-mode))
+  :config
+  (setq plantuml-jar-path "/home/nakaji-wsl/plantuml.jar")
+  (setq plantuml-default-exec-mode 'jar)
+  (setq plantuml-output-type "png")
+  ; 日本語を含むUMLを書く場合はUTF-8を指定
+  (setq plantuml-options "-charset UTF-8")
+  )
+
 (use-package arduino-mode
   :mode (("\\.ino\\'" . arduino-mode))
   )
