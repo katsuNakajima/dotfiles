@@ -250,22 +250,6 @@
   :mode (("CMakeLists\\.txt\\'" . cmake-mode))
   )
 
-(defun ladicle/task-clocked-time ()
-  "Return a string with the clocked time and effort, if any"
-  (interactive)
-  (let* ((clocked-time (org-clock-get-clocked-time))
-         (h (truncate clocked-time 60))
-         (m (mod clocked-time 60))
-         (work-done-str (format "%d:%02d" h m)))
-    (if org-clock-effort
-        (let* ((effort-in-minutes
-                (org-duration-to-minutes org-clock-effort))
-               (effort-h (truncate effort-in-minutes 60))
-               (effort-m (truncate (mod effort-in-minutes 60)))
-               (effort-str (format "%d:%02d" effort-h effort-m)))
-          (format "%s/%s" work-done-str effort-str))
-      (format "%s" work-done-str))))
-
 (use-package tramp
   :config
   (setq tramp-copy-size-limit nil)
