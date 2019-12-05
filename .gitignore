@@ -15,3 +15,5 @@
 .emacs.d/url/
 .emacs.d/tramp
 .emacs.d/site-lisp/
+.emacs.d/.cache
+.emacs.d/kkcrc
