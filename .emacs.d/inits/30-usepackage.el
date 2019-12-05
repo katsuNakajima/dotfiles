@@ -334,7 +334,14 @@
   (editorconfig-mode 1)
 )
 
-(use-package rustic)
+(use-package cargo)
+
+(use-package rustic
+  :after (lsp-mode cargo)
+  :bind
+  (:map rustic-mode-map
+        ("C-c C-c C-r" . cargo-process-run))
+  )
 
 (use-package python-mode
   :config
