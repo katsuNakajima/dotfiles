@@ -24,3 +24,4 @@
     (load (expand-file-name custom-file) t nil nil))
 
 (el-patch-validate-all)
+(put 'upcase-region 'disabled nil)
