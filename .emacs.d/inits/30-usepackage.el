@@ -137,7 +137,7 @@
   (lsp-prefer-flymake 'flymake)
   (lsp-enable-completion-at-point nil)
   :commands lsp
-  :hook
+  ;:hook
   ;(sh-mode . lsp)
   :bind
   (:map lsp-mode-map
@@ -155,7 +155,7 @@
     (lsp-ui-doc-max-width 150)
     (lsp-ui-doc-max-height 30)
     (lsp-ui-doc-use-childframe t)
-    (lsp-ui-doc-use-webkit t)
+    (lsp-ui-doc-use-webkit nil)
     ;; lsp-ui-flycheck
     (lsp-ui-flycheck-enable nil)
     ;; lsp-ui-sideline
