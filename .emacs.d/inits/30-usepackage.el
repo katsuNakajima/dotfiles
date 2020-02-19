@@ -205,17 +205,6 @@
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
 
-;(use-package flycheck
-;  :config
-;  (add-hook 'csharp-mode-hook #'flycheck-mode)
-;  )
-
-;(use-package flycheck-inline
-;  :after flycheck
-;  :init
-;  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)
-;  )
-
 (use-package eyebrowse)
 
 (use-package flymake
@@ -379,13 +368,6 @@ This function is intended to be used in parallel with
       (setq python-shell-virtualenv-root nil)))
   (add-hook 'elpy-mode-hook 'pipenv-auto-activate)
 )
-
-(use-package omnisharp
-  :hook (csharp-mode . omnisharp-mode)
-  :config
-  (add-to-list 'company-backends 'company-omnisharp)
-  (add-hook 'csharp-mode-hook #'company-mode)
-  )
 
 (use-package ace-window
   :bind
