@@ -358,9 +358,15 @@
 (use-package omnisharp
   :hook (csharp-mode . omnisharp-mode)
   :config
-;  (setq omnisharp-server-executable-path "/home/nakaji/omnisharp-1.32.18/run")
   (add-to-list 'company-backends 'company-omnisharp)
   (add-hook 'csharp-mode-hook #'company-mode)
+  )
+
+(use-package ace-window
+  :bind
+  (("C-'" . ace-window))
+  :custom-face
+  (aw-leading-char-face ((t (:height 3.0 :foreground "#f1fa8c"))))
   )
 
 (use-package google-translate
