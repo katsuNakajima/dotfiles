@@ -17,3 +17,4 @@
 .emacs.d/site-lisp/
 .emacs.d/.cache
 .emacs.d/kkcrc
+.emacs.d/elpy/
