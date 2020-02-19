@@ -29,3 +29,13 @@
 (add-hook 'makefile-mode-hook
   (function (lambda ()
     (setq indent-tabs-mode t))))
+
+; 現在開いているバッファのディレクトリをtmuxで開く
+(defun tmux-new-window ()
+  (interactive)
+  (if (string-equal major-mode "dired-mode")
+      (let ((dirname (expand-file-name default-directory)))
+        (shell-command (concat "tmux new-window -c \"" dirname "\"")))
+    (let ((fname buffer-file-name))
+      (if (stringp fname)
+          (shell-command (concat "tmux new-window -c \"$(dirname " fname ")\""))))))
