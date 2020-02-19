@@ -138,7 +138,7 @@
   (lsp-enable-completion-at-point nil)
   :commands lsp
   :hook
-  (sh-mode . lsp)
+  ;(sh-mode . lsp)
   :bind
   (:map lsp-mode-map
         ("C-c r"   . lsp-rename))
@@ -155,7 +155,7 @@
     (lsp-ui-doc-max-width 150)
     (lsp-ui-doc-max-height 30)
     (lsp-ui-doc-use-childframe t)
-    (lsp-ui-doc-use-webkit nil)
+    (lsp-ui-doc-use-webkit t)
     ;; lsp-ui-flycheck
     (lsp-ui-flycheck-enable nil)
     ;; lsp-ui-sideline
