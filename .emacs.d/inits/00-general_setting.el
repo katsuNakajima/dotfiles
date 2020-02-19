@@ -87,9 +87,6 @@
 ;; ミニバッファの履歴の保存数を増やす
 (setq history-length 3000)
 
-;Meta-gで行移動できるようにする
-(global-set-key "\M-g" 'goto-line)
-
 ;;; GCを減らして軽くする
 (setq gc-cons-threshold (* 10 gc-cons-threshold))
 
