@@ -19,12 +19,6 @@
   (when (region-active-p)
     (shell-command-on-region (region-beginning) (region-end) "xsel -ib" nil nil)))
 
-(defun open-with-shiba ()
-  "open a current markdown file with shiba"
-  (interactive)
-  (start-process "shiba" "*shiba*" "shiba" "--detach" buffer-file-name))
-(define-key markdown-mode-map (kbd "C-c C-c f") 'open-with-shiba)
-
 ;makefile-mode with hard-tab
 (add-hook 'makefile-mode-hook
   (function (lambda ()
