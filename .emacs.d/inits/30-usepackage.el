@@ -351,15 +351,34 @@
         ("C-c C-c C-r" . cargo-process-run))
   )
 
-(use-package python-mode
+(use-package elpy
+  :init
+  (elpy-enable)
   :config
-  (use-package pipenv
-    :hook (python-mode . pipenv-mode)
-    :init
-    (setq
-     pipenv-projectile-after-switch-function
-     #'pipenv-projectile-after-switch-extended))
-  (add-hook 'python-mode-hook #'lsp))
+  (setq elpy-rpc-python-command "python3")
+  )
+
+(use-package py-autopep8
+  :hook
+  (python-mode . py-autopep8-enable-on-save)
+)
+
+(use-package pipenv
+  :config
+  ; https://github.com/jorgenschaefer/elpy/issues/1217
+  (pyvenv-tracking-mode)
+  (defun pipenv-auto-activate ()
+    "Set `pyvenv-activate' to the current pipenv virtualenv.
+This function is intended to be used in parallel with
+ `pyvenv-tracking-mode'."
+    (pipenv-deactivate)
+    (pipenv--force-wait (pipenv-venv))
+    (when python-shell-virtualenv-root
+      (setq-local pyvenv-activate
+                  (directory-file-name python-shell-virtualenv-root))
+      (setq python-shell-virtualenv-root nil)))
+  (add-hook 'elpy-mode-hook 'pipenv-auto-activate)
+)
 
 (use-package omnisharp
   :hook (csharp-mode . omnisharp-mode)
