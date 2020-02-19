@@ -69,6 +69,12 @@
     (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
   )
 
+(use-package helm-git-grep
+  :after (helm)
+  :bind (("C-x M-g" . helm-git-grep))
+  (:map helm-map ("C-x M-g" . helm-git-grep-from-helm))
+)
+
 (use-package magit
   :bind
   (("C-x g" . magit-status))
