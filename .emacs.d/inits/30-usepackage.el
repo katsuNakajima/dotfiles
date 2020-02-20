@@ -369,6 +369,11 @@ This function is intended to be used in parallel with
   (aw-leading-char-face ((t (:height 3.0 :foreground "#f1fa8c"))))
   )
 
+(use-package emojify :ensure t
+  :if (display-graphic-p)
+  :hook (after-init . global-emojify-mode)
+  )
+
 (use-package google-translate
   :bind
   (("C-c t" . google-translate-enja-or-jaen))
