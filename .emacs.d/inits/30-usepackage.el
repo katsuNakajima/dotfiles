@@ -374,6 +374,16 @@ This function is intended to be used in parallel with
   :hook (after-init . global-emojify-mode)
   )
 
+(use-package emoji-cheat-sheet-plus
+    :defer t
+    :init
+    (progn
+      ;; enabled emoji in buffer
+      (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+      ;; insert emoji with helm
+      (global-set-key (kbd "C-c C-e") 'emoji-cheat-sheet-plus-insert))
+    )
+
 (use-package google-translate
   :bind
   (("C-c t" . google-translate-enja-or-jaen))
