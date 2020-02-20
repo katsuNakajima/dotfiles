@@ -22,6 +22,7 @@
  ("emacs-async" . "86aef2c38e7d35e8509b7feeee3e989d825eba91")
  ("emacs-ccls" . "e5cc4c3e6f40c9c9f0f53e99154c08018eb36944")
  ("emacs-doom-themes" . "8968e60b9ef881400231c0f5c2c1af0a3e57a77f")
+ ("emacs-emoji-cheat-sheet-plus" . "ffcc84d7060dfa000148e7f8be4fd6701593a74f")
  ("emacs-git-gutter" . "00c05264af046b5ce248e5b0bc42f117d9c27a09")
  ("emacs-hide-mode-line" . "88888825b5b27b300683e662fa3be88d954b1cea")
  ("emacs-memoize" . "51b075935ca7070f62fae1d69fe0ff7d8fa56fdd")
