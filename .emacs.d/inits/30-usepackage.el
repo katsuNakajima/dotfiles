@@ -247,13 +247,6 @@
   :mode (("CMakeLists\\.txt\\'" . cmake-mode))
   )
 
-(use-package tramp
-  :config
-  (setq tramp-copy-size-limit nil)
-  (setq tramp-inline-compress-start-size nil)
-  (setq password-cache-expiry nil)
-  )
-
 (use-package yaml-mode
   :mode (("\\.yml\\'" . yaml-mode))
   :bind ( :map yaml-mode-map
