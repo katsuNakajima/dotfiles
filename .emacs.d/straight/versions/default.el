@@ -66,7 +66,6 @@
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("spinner" . "2daa167bec1c7566d662d48613a94453536b524a")
  ("straight.el" . "ed54b626b0faec36fdaff30c72351d5fb41a6786")
- ("tramp" . "1138aaec9ba1f03a7eeb9333be5a731578fac7cb")
  ("transient" . "79777324858df408bd6ba7509d9f0b6987208d98")
  ("use-package" . "42db6b3d90ee57d0f5947d3b0bf4b0010bdf7b40")
  ("volatile-highlights.el" . "9a20091f0ce7fc0a6b3e641a6a46d5f3ac4d8392")
