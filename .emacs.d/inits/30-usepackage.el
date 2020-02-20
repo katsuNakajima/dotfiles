@@ -369,20 +369,16 @@ This function is intended to be used in parallel with
   (aw-leading-char-face ((t (:height 3.0 :foreground "#f1fa8c"))))
   )
 
-(use-package emojify :ensure t
-  :if (display-graphic-p)
-  :hook (after-init . global-emojify-mode)
-  )
-
 (use-package emoji-cheat-sheet-plus
     :defer t
     :init
     (progn
       ;; enabled emoji in buffer
       (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+      (add-hook 'markdown-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+      (add-hook 'magit-log-mode-hook 'emoji-cheat-sheet-plus-display-mode)
       ;; insert emoji with helm
-      (global-set-key (kbd "C-c C-e") 'emoji-cheat-sheet-plus-insert))
-    )
+      (global-set-key (kbd "C-c C-e") 'emoji-cheat-sheet-plus-insert)))
 
 (use-package google-translate
   :bind
