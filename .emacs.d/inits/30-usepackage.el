@@ -21,11 +21,7 @@
       :hook
       (after-init . doom-modeline-mode)
       :config
-      (line-number-mode 0)
-      (column-number-mode 0)
-      (doom-modeline-def-modeline 'main
-    '(bar workspace-name window-number matches buffer-info remote-host buffer-position parrot selection-info)
-    '(misc-info persp-name lsp github debug minor-modes input-method major-mode process vcs checker)))
+      )
 
 (use-package hide-mode-line
     :hook
@@ -211,13 +207,13 @@
   :config
   (setq flymake-no-changes-timeout 2))
 
-(use-package flymake-diagnostic-at-point
-  :after flymake
-  :custom
-  (flymake-diagnostic-at-point-timer-delay 0.1)
-  (flymake-diagnostic-at-point-display-diagnostic-function 'flymake-diagnostic-at-point-display-popup)
-  :hook
-  (flymake-mode . flymake-diagnostic-at-point-mode))
+;; (use-package flymake-diagnostic-at-point
+;;   :after flymake
+;;   :custom
+;;   (flymake-diagnostic-at-point-timer-delay 0.1)
+;;   (flymake-diagnostic-at-point-display-diagnostic-function 'flymake-diagnostic-at-point-display-popup)
+;;   :hook
+;;   (flymake-mode . flymake-diagnostic-at-point-mode))
 
 (use-package markdown-mode
   :mode (("\\.text\\'" . markdown-mode)
