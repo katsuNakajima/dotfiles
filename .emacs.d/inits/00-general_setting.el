@@ -90,6 +90,12 @@
 ;;; GCを減らして軽くする
 (setq gc-cons-threshold (* 10 gc-cons-threshold))
 
+;; Initial frame settings require HackGen35Nerd
+(setq default-frame-alist
+      (append (list
+              '(font . "HackGen35Nerd-16"))
+              default-frame-alist))
+
 ;; 日本語設定
 (set-language-environment "Japanese")
 (set-default-coding-systems 'utf-8)
