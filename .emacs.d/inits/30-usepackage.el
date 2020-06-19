@@ -11,7 +11,8 @@
     :config
     (load-theme 'doom-dracula t)
     (doom-themes-neotree-config)
-    (doom-themes-org-config))
+    (doom-themes-org-config)
+    )
 
 (use-package doom-modeline
       :custom
@@ -20,7 +21,6 @@
       (doom-modeline-minor-modes nil)
       :hook
       (after-init . doom-modeline-mode)
-      :config
       )
 
 (use-package hide-mode-line
@@ -46,8 +46,7 @@
   (define-key global-map [remap occur] 'helm-occur)
   (define-key global-map [remap list-buffers] 'helm-buffers-list)
   (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-  
-  (use-package helm-ls-git)
+    (use-package helm-ls-git)
   (custom-set-variables
    '(helm-source-ls-git (helm-ls-git-build-ls-git-source))
    '(helm-source-ls-git-status (helm-ls-git-build-git-status-source))
@@ -135,7 +134,7 @@
   (lsp-response-timeout 5)
   (lsp-prefer-flymake 'flymake)
   (lsp-enable-completion-at-point nil)
-  :commands lsp
+  (lsp-enable-on-type-formatting nil)
   ;:hook
   ;(sh-mode . lsp)
   :bind
@@ -158,7 +157,7 @@
     ;; lsp-ui-flycheck
     (lsp-ui-flycheck-enable nil)
     ;; lsp-ui-sideline
-    (lsp-ui-sideline-enable t)
+    (lsp-ui-sideline-enable nil)
     (lsp-ui-sideline-ignore-duplicate t)
     (lsp-ui-sideline-show-symbol t)
     (lsp-ui-sideline-show-hover t)
@@ -203,8 +202,6 @@
   :custom (ccls-executable "/usr/local/bin/ccls")
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
-
-(use-package eyebrowse)
 
 (use-package flymake
   :config
