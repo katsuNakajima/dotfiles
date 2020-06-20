@@ -323,10 +323,13 @@
 (use-package cargo)
 
 (use-package rustic
-  :after (lsp-mode cargo)
+  :after
+  (lsp-mode cargo)
   :bind
   (:map rustic-mode-map
         ("C-c C-c C-r" . cargo-process-run))
+  :config
+  (setq rustic-lsp-server 'rust-analyzer)
   )
 
 (use-package elpy
