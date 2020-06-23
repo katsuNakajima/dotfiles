@@ -209,7 +209,10 @@
 
 (use-package flymake
   :config
-  (setq flymake-no-changes-timeout 2))
+  (setq flymake-no-changes-timeout 2)
+  ; https://github.com/emacs-ess/ESS/issues/883
+  (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
+  )
 
 (use-package flymake-diagnostic-at-point
   :after flymake
