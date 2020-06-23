@@ -40,13 +40,16 @@
    ("C-M-z" . helm-resume)
    ("M-g g" . helm-do-grep)
    ("M-g l" . helm-occur-from-isearch)
-   ("C-x C-d" . helm-browse-project))
+   ("C-x C-d" . helm-browse-project)
+   ("C-x C-g" . helm-ghq)
+   )
   :config
   (define-key global-map [remap find-file] 'helm-find-files)
   (define-key global-map [remap occur] 'helm-occur)
   (define-key global-map [remap list-buffers] 'helm-buffers-list)
   (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-    (use-package helm-ls-git)
+  (use-package helm-ls-git)
+  (use-package helm-ghq)
   (custom-set-variables
    '(helm-source-ls-git (helm-ls-git-build-ls-git-source))
    '(helm-source-ls-git-status (helm-ls-git-build-git-status-source))
@@ -58,6 +61,7 @@
        helm-source-ls-git
        helm-source-file-cache
        helm-source-locate
+       helm-source-ghq
        )))
   (use-package helm-xref
     :config
