@@ -83,3 +83,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 #for WSL permission
 umask 022
 
+# git repo control ghq and peco
+alias cr='cd $(ghq root)/$(ghq list | peco)'
+alias crh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
