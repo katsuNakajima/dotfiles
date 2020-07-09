@@ -98,9 +98,6 @@
   (company-selection-wrap-around t)
   :diminish company-mode)
 
-(use-package company-box
-  :hook (company-mode . company-box-mode))
-
 (use-package irony
   :config
   (use-package company-irony

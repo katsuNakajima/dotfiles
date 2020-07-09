@@ -25,3 +25,4 @@
 
 (el-patch-validate-all)
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
