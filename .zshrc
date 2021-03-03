@@ -77,8 +77,9 @@ screen*)
 esac
 
 # 共通path設定
-export PATH=$PATH:$HOME/.local/bin:$HOME/.npm-global/bin
+export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/development/flutter/bin:$PATH"
 
 #for WSL permission
 umask 022
