@@ -113,8 +113,27 @@
     :hook (rust-mode . lsp)
     :bind ("C-c h" . lsp-describe-thing-at-point)
     :custom (lsp-rust-server 'rust-analyzer))
+
 (use-package lsp-ui
-    :ensure t)
+    :ensure t
+    :custom
+    (lsp-ui-doc-enable t)
+    (lsp-ui-doc-header t)
+    (lsp-ui-doc-include-signature t)
+    (lsp-ui-doc-position 'bottom) ;; top, bottom, or at-point
+    (lsp-ui-doc-max-width 150)
+    (lsp-ui-doc-max-height 30)
+    (lsp-ui-doc-use-childframe t)
+    (lsp-ui-doc-use-webkit t)
+    :preface
+    (defun ladicle/toggle-lsp-ui-doc ()
+    (interactive)
+    (if lsp-ui-doc-mode
+        (progn
+        (lsp-ui-doc-mode -1)
+        (lsp-ui-doc--hide-frame))
+        (lsp-ui-doc-mode 1)))
+    )
 
 ;; cclsは別途hookする
 (use-package ccls
