@@ -27,52 +27,27 @@
     :hook
     ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode))
 
-(use-package helm
-  :bind
-  (("M-y" . helm-show-kill-ring)
-   ("C-x b" . helm-for-files)
-   ("C-x I" . helm-semantic-or-imenu)
-   ("C-x r l" . helm-bookmarks)
-   ("M-x" . helm-M-x)
-   ("C-x C-f" . helm-find-files)
-   ("C-<f6>" . helm-ls-git-ls)
-   ("C-x C-r" . helm-recentf)
-   ("C-M-z" . helm-resume)
-   ("M-g g" . helm-do-grep)
-   ("M-g l" . helm-occur-from-isearch)
-   ("C-x C-d" . helm-browse-project)
-   ("C-x C-g" . helm-ghq)
-   )
-  :config
-  (define-key global-map [remap find-file] 'helm-find-files)
-  (define-key global-map [remap occur] 'helm-occur)
-  (define-key global-map [remap list-buffers] 'helm-buffers-list)
-  (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-  (use-package helm-ls-git)
-  (use-package helm-ghq)
-  (custom-set-variables
-   '(helm-source-ls-git (helm-ls-git-build-ls-git-source))
-   '(helm-source-ls-git-status (helm-ls-git-build-git-status-source))
-   '(helm-for-files-preferred-list
-     '(helm-source-buffers-list
-       helm-source-recentf
-       helm-source-files-in-current-dir
-       helm-source-ls-git-status
-       helm-source-ls-git
-       helm-source-file-cache
-       helm-source-locate
-       helm-source-ghq
-       )))
-  (use-package helm-xref
-    :config
-    (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
-  )
+(use-package counsel
+  :after ivy
+  :config (counsel-mode))
 
-(use-package helm-git-grep
-  :after (helm)
-  :bind (("C-x M-g" . helm-git-grep))
-  (:map helm-map ("C-x M-g" . helm-git-grep-from-helm))
-)
+(use-package ivy
+  :defer 0.1
+  :diminish
+  :bind
+  (("C-c C-r" . ivy-resume)
+  ("C-x B" . ivy-switch-buffer-other-window))
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :config
+  (ivy-mode))
+
+(use-package swiper
+  :after ivy
+  :bind
+  (("C-s" . swiper)
+  ("C-r" . swiper)))
 
 (use-package magit
   :bind
