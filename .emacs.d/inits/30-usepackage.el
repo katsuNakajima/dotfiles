@@ -88,6 +88,9 @@
     :config
     (push 'company-irony company-backends)))
 
+(use-package company-box
+    :hook (company-mode . company-box-mode))
+
 (use-package clang-format
     :config
     (bind-key "C-c r" 'clang-format-region)
@@ -126,8 +129,8 @@
     (lsp-ui-doc-max-height 30)
     (lsp-ui-doc-use-childframe t)
     (lsp-ui-doc-use-webkit t)
-    ;; lsp-ui-flycheck
     (lsp-ui-flycheck-enable nil)
+    (lsp-ui-sideline-enable nil)
     :preface
     (defun ladicle/toggle-lsp-ui-doc ()
     (interactive)
