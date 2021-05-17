@@ -320,8 +320,6 @@
     (:map
         rustic-mode-map
         ("C-c C-c C-r" . cargo-process-run))
-    :config
-    (setq rustic-lsp-server 'rust-analyzer)
     )
 
 (use-package elpy
