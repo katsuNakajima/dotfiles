@@ -19,12 +19,12 @@
     (when (region-active-p)
     (shell-command-on-region (region-beginning) (region-end) "xsel -ib" nil nil)))
 
-;makefile-mode with hard-tab
+;; makefile-mode with hard-tab
 (add-hook 'makefile-mode-hook
     (function (lambda ()
     (setq indent-tabs-mode t))))
 
-; 現在開いているバッファのディレクトリをtmuxで開く
+;; 現在開いているバッファのディレクトリをtmuxで開く
 (defun tmux-new-window ()
     (interactive)
     (if (string-equal major-mode "dired-mode")

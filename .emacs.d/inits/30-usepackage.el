@@ -180,7 +180,7 @@
 (use-package flymake
     :config
     (setq flymake-no-changes-timeout 2)
-    ; https://github.com/emacs-ess/ESS/issues/883
+;; https://github.com/emacs-ess/ESS/issues/883
     (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
     )
 
@@ -308,7 +308,7 @@
     :after
     (lsp-mode cargo)
     :bind
-    (:map 
+    (:map
         rustic-mode-map
         ("C-c C-c C-r" . cargo-process-run))
     :config
@@ -329,7 +329,7 @@
 
 (use-package pipenv
     :config
-    ; https://github.com/jorgenschaefer/elpy/issues/1217
+;;https://github.com/jorgenschaefer/elpy/issues/1217
     (pyvenv-tracking-mode)
     (defun pipenv-auto-activate ()
     "Set `pyvenv-activate' to the current pipenv virtualenv.

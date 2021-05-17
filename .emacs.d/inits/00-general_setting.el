@@ -38,29 +38,29 @@
 ;; png, jpg などのファイルを画像として表示
 (setq auto-image-file-mode t)
 
-;;; バックアップファイルの作成を禁止
+;; バックアップファイルの作成を禁止
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;;; 終了時に自動保存ファイルを削除
+;; 終了時に自動保存ファイルを削除
 (setq delete-auto-save-files t)
 
-;;; バッファ末尾に余計な改行コードを防ぐ
+;; バッファ末尾に余計な改行コードを防ぐ
 (setq next-line-add-newlines nil)
 
-;;; デフォルトのタブ幅
+;; デフォルトのタブ幅
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
 
-;;; 対応する括弧を強調表示
+;; 対応する括弧を強調表示
 (setq show-paren-delay 0) ;; 0秒(遅延なし)で表示
 (show-paren-mode t)
 
-;;; 選択領域を可視化
+;; 選択領域を可視化
 (setq-default transient-mark-mode t)
 
-;;; 長い行は折り返して表示
+;; 長い行は折り返して表示
 (setq truncate-lines t)
 
 ;; scratchの初期メッセージ消去
@@ -87,7 +87,7 @@
 ;; ミニバッファの履歴の保存数を増やす
 (setq history-length 3000)
 
-;;; GCを減らして軽くする
+;; GCを減らして軽くする
 (setq gc-cons-threshold (* 10 gc-cons-threshold))
 
 ;; Initial frame settings require HackGen35Nerd
