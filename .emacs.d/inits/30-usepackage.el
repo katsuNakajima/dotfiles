@@ -145,7 +145,15 @@
     ("C-c s"   . lsp-ui-sideline-mode)
     ("C-c f"   . lsp-format-buffer)
     ("C-c d"   . ladicle/toggle-lsp-ui-doc))
+    :hook
+    (lsp-mode . lsp-ui-mode)
     )
+
+    (use-package company-lsp
+    :custom
+    (company-lsp-cache-candidates t) ;; always using cache
+    (company-lsp-async t)
+    (company-lsp-enable-recompletion nil))
 
 ;; cclsは別途hookする
 (use-package ccls
@@ -279,6 +287,7 @@
 )
 
 (add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
+
 (use-package rust-mode
     :ensure t
     :custom rust-format-on-save t)
