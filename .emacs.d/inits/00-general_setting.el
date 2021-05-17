@@ -73,7 +73,7 @@
 (tool-bar-mode -1)
 
 ;; メニューバーを非表示
-;(menu-bar-mode -1)
+                                        ;(menu-bar-mode -1)
 
 ;; スクロールバー非表示
 (set-scroll-bar-mode nil)
@@ -87,14 +87,14 @@
 ;; ミニバッファの履歴の保存数を増やす
 (setq history-length 3000)
 
-;;; GCを減らして軽くする
+;; GCを減らして軽くする
 (setq gc-cons-threshold (* 10 gc-cons-threshold))
 
+;; スペース・タブを可視化
+(global-whitespace-mode 1)
+
 ;; Initial frame settings require HackGen35Nerd
-(setq default-frame-alist
-      (append (list
-              '(font . "HackGen35Nerd-16"))
-              default-frame-alist))
+(setq default-frame-alist (append (list '(font . "HackGen35Nerd-16")) default-frame-alist))
 
 ;; 日本語設定
 (set-language-environment "Japanese")

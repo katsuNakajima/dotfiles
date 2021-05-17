@@ -114,8 +114,6 @@
   (lsp-prefer-flymake 'flymake) 
   (lsp-enable-completion-at-point nil) 
   (lsp-enable-on-type-formatting nil)
-                                        ;:hook
-                                        ;(sh-mode . lsp)
   :bind (:map lsp-mode-map
               ("C-c r"   . lsp-rename)) 
   :config (require 'lsp-clients)
@@ -181,7 +179,7 @@
 (use-package 
   flymake 
   :config (setq flymake-no-changes-timeout 2)
-                                        ; https://github.com/emacs-ess/ESS/issues/883
+  ;; https://github.com/emacs-ess/ESS/issues/883
   (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake))
 
 (use-package 
@@ -204,7 +202,7 @@
   :config (setq plantuml-jar-path "/home/nakaji-wsl/plantuml.jar") 
   (setq plantuml-default-exec-mode 'jar) 
   (setq plantuml-output-type "png")
-                                        ; 日本語を含むUMLを書く場合はUTF-8を指定
+  ;; 日本語を含むUMLを書く場合はUTF-8を指定
   (setq plantuml-options "-charset UTF-8"))
 
 (use-package 
@@ -255,8 +253,7 @@
   :config (global-git-gutter-mode +1))
 
 (use-package 
-  highlight-indent-guides 
-
+  highlight-indent-guides
   :diminish 
   :hook ((prog-mode yaml-mode) . highlight-indent-guides-mode) 
   :custom (highlight-indent-guides-auto-enabled t) 
@@ -279,8 +276,7 @@
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package 
-  volatile-highlights 
-
+  volatile-highlights
   :diminish 
   :hook (after-init . volatile-highlights-mode) 
   :custom-face (vhl/default-face ((nil 
@@ -321,7 +317,7 @@
 (use-package 
   pipenv 
   :config
-                                        ; https://github.com/jorgenschaefer/elpy/issues/1217
+  ;; https://github.com/jorgenschaefer/elpy/issues/1217
   (pyvenv-tracking-mode) 
   (defun pipenv-auto-activate () 
     "Set `pyvenv-activate' to the current pipenv virtualenv.
@@ -372,16 +368,16 @@ This function is intended to be used in parallel with
     (let* ((asciip (string-match (format "\\`[%s]+\\'" "[:ascii:]’“”–") string))) 
       (run-at-time 0.1 nil 'deactivate-mark) 
       (google-translate-translate (if asciip "en" "ja") 
-                                  (if asciip "ja" "en") string)))
+                                  (if asciip "ja" "en") string))) 
   (defun remove-c-comment (args) 
     (let ((text (nth 2 args))) 
       (setf (nth 2 args) 
             (replace-regexp-in-string "\n" " " (replace-regexp-in-string "[ \t]*//[/*!]*[ \t]+" ""
                                                                          (replace-regexp-in-string
                                                                           "[ \t]+\\(\\*[ \t]+\\)+"
-                                                                          " " text)))) args))
+                                                                          " " text)))) args)) 
   (advice-add 'google-translate-request 
-              :filter-args #'remove-c-comment)
+              :filter-args #'remove-c-comment) 
   :config/el-patch (el-patch-defun google-translate--search-tkk () "Search TKK." (el-patch-swap (let
                                                                                                     ((start
                                                                                                       nil) 
