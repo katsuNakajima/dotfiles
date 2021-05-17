@@ -358,9 +358,7 @@ This function is intended to be used in parallel with
 ;; enabled emoji in buffer
     (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
     (add-hook 'markdown-mode-hook 'emoji-cheat-sheet-plus-display-mode)
-    (add-hook 'magit-log-mode-hook 'emoji-cheat-sheet-plus-display-mode)
-;; insert emoji with helm
-    (global-set-key (kbd "C-c C-e") 'emoji-cheat-sheet-plus-insert)))
+    (add-hook 'magit-log-mode-hook 'emoji-cheat-sheet-plus-display-mode)))
 
 (use-package google-translate
     :bind
