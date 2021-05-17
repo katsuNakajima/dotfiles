@@ -322,6 +322,7 @@
         ("C-c C-c C-r" . cargo-process-run))
     :config
     (setq rustic-lsp-server 'rust-analyzer)
+    (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
     )
 
 (use-package elpy
