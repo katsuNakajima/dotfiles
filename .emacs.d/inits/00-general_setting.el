@@ -53,6 +53,9 @@
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
 
+;; スペース・タブを可視化
+(global-whitespace-mode 1)
+
 ;; 対応する括弧を強調表示
 (setq show-paren-delay 0) ;; 0秒(遅延なし)で表示
 (show-paren-mode t)
