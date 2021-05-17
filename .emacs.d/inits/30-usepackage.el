@@ -293,12 +293,15 @@
     :ensure t
     :hook (rust-mode . cargo-minor-mode))
 
-(use-package elpy
-    :init
-    (elpy-enable)
-    :config
-    (setq elpy-rpc-python-command "python3")
-    )
+(setq python-shell-interpreter "python3")
+(setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
+(setq flycheck-python-pycompile-executable "python3")
+
+(use-package lsp-pyright
+    :ensure t
+    :hook (python-mode . (lambda ()
+    (require 'lsp-pyright)
+    (lsp))))  ; or lsp-deferred
 
 (use-package py-autopep8
     :hook
