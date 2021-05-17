@@ -366,43 +366,43 @@ This function is intended to be used in parallel with
     :bind
     (("C-c t" . google-translate-enja-or-jaen))
     :config
-;  (setq google-translate-translation-directions-alist '(("en" . "ja") ("ja" . "en")))
-
-  (defun google-translate-enja-or-jaen (&optional string)
-    "Translate words in region or current position. Can also specify query with C-u"
-    (interactive)
-    (setq string
-          (cond ((stringp string) string)
+    ;(setq google-translate-translation-directions-alist '(("en" . "ja") ("ja" . "en")))
+    (defun google-translate-enja-or-jaen (&optional string)
+        "Translate words in region or current position. Can also specify query with C-u"
+        (interactive)
+        (setq string
+            (cond ((stringp string) string)
                 (current-prefix-arg
-                 (read-string "Google Translate: "))
+                (read-string "Google Translate: "))
                 ((use-region-p)
-                 (buffer-substring (region-beginning) (region-end)))
+                (buffer-substring (region-beginning) (region-end)))
                 (t
-                 (thing-at-point 'word))))
+                (thing-at-point 'word))))
     (let* ((asciip (string-match
                     (format "\\`[%s]+\\'" "[:ascii:]’“”–")
                     string)))
-      (run-at-time 0.1 nil 'deactivate-mark)
-      (google-translate-translate
-       (if asciip "en" "ja")
-       (if asciip "ja" "en")
-       string)))
+        (run-at-time 0.1 nil 'deactivate-mark)
+        (google-translate-translate
+        (if asciip "en" "ja")
+        (if asciip "ja" "en")
+        string)))
 
-  (defun remove-c-comment (args)
-    (let ((text (nth 2 args)))
-      (setf (nth 2 args) (replace-regexp-in-string "\n" " "
-                                                   (replace-regexp-in-string "[ \t]*//[/*!]*[ \t]+" ""
-                                                                             (replace-regexp-in-string "[ \t]+\\(\\*[ \t]+\\)+" " " text))))
-      args))
+    (defun remove-c-comment (args)
+        (let ((text (nth 2 args)))
+        (setf (nth 2 args)
+        (replace-regexp-in-string "\n" " "
+        (replace-regexp-in-string "[ \t]*//[/*!]*[ \t]+" ""
+        (replace-regexp-in-string "[ \t]+\\(\\*[ \t]+\\)+" " " text))))
+        args))
 
-  (advice-add 'google-translate-request :filter-args
-              #'remove-c-comment)
+    (advice-add 'google-translate-request :filter-args
+            #'remove-c-comment)
 
-  :config/el-patch
-  (el-patch-defun google-translate--search-tkk ()
+    :config/el-patch
+    (el-patch-defun google-translate--search-tkk ()
     "Search TKK."
     (el-patch-swap
-      (let ((start nil)
+        (let ((start nil)
             (tkk nil)
             (nums '()))
         (setq start (search-forward ",tkk:'"))
@@ -411,6 +411,6 @@ This function is intended to be used in parallel with
         (setq tkk (buffer-substring start (point)))
         (setq nums (split-string tkk "\\."))
         (list (string-to-number (car nums))
-              (string-to-number (car (cdr nums)))))
-      (list 430675 2721866130)))
+            (string-to-number (car (cdr nums)))))
+    (list 430675 2721866130)))
 )
