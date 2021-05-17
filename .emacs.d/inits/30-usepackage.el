@@ -43,6 +43,16 @@
     :config
     (ivy-mode))
 
+(use-package all-the-icons-ivy-rich
+    :after ivy
+    :ensure t
+    :init (all-the-icons-ivy-rich-mode 1))
+
+(use-package ivy-rich
+    :after ivy
+    :ensure t
+    :init (ivy-rich-mode 1))
+
 (use-package swiper
     :after ivy
     :bind
@@ -51,8 +61,7 @@
 
 (use-package magit
     :bind
-    (("C-x g" . magit-status))
-    )
+    (("C-x g" . magit-status)))
 
 (use-package company
     :bind
