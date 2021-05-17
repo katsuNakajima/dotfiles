@@ -293,37 +293,11 @@
     :ensure t
     :hook (rust-mode . cargo-minor-mode))
 
-(setq python-shell-interpreter "python3")
-(setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
-(setq flycheck-python-pycompile-executable "python3")
-
 (use-package lsp-pyright
     :ensure t
     :hook (python-mode . (lambda ()
     (require 'lsp-pyright)
     (lsp))))  ; or lsp-deferred
-
-(use-package py-autopep8
-    :hook
-    (python-mode . py-autopep8-enable-on-save)
-    )
-
-(use-package pipenv
-    :config
-;;https://github.com/jorgenschaefer/elpy/issues/1217
-    (pyvenv-tracking-mode)
-    (defun pipenv-auto-activate ()
-    "Set `pyvenv-activate' to the current pipenv virtualenv.
-This function is intended to be used in parallel with
-`pyvenv-tracking-mode'."
-    (pipenv-deactivate)
-    (pipenv--force-wait (pipenv-venv))
-    (when python-shell-virtualenv-root
-        (setq-local pyvenv-activate
-            (directory-file-name python-shell-virtualenv-root))
-        (setq python-shell-virtualenv-root nil)))
-    (add-hook 'elpy-mode-hook 'pipenv-auto-activate)
-)
 
 (use-package ace-window
     :bind
