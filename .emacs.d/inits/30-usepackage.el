@@ -102,13 +102,25 @@
     )
 
 (use-package projectile
+    :ensure t
+    :diminish
+    :custom
+    (projectile-switch-project-action 'projectile-dired)
     :config
+    (projectile-mode +1)
+  (when (executable-find "ghq")
+    (setq projectile-known-projects
+        (mapcar
+        (lambda (x) (abbreviate-file-name x))
+        (split-string (shell-command-to-string "ghq list --full-path")))))
     (defun projectile-project-find-function (dir)
     (let* ((root (projectile-project-root dir)))
         (and root (cons 'transient root))))
     (with-eval-after-load 'project
-    (add-to-list 'project-find-functions 'projectile-project-find-function))
-    )
+        (add-to-list 'project-find-functions 'projectile-project-find-function))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+   )
 
 (use-package lsp-mode
     :ensure t
