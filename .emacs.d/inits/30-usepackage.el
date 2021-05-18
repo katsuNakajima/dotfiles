@@ -108,7 +108,7 @@
     (projectile-switch-project-action 'projectile-dired)
     :config
     (projectile-mode +1)
-  (when (executable-find "ghq")
+    (when (executable-find "ghq")
     (setq projectile-known-projects
         (mapcar
         (lambda (x) (abbreviate-file-name x))
@@ -120,7 +120,7 @@
         (add-to-list 'project-find-functions 'projectile-project-find-function))
     :bind-keymap
     ("C-c p" . projectile-command-map)
-   )
+    )
 
 (use-package lsp-mode
     :ensure t
