@@ -72,6 +72,9 @@
                     :foreground "#bf616a"
                     :height 0.9)
 
+;; 行番号フォーマット
+(setq linum-format "%4d")
+
 ;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
 
@@ -82,7 +85,7 @@
 (tool-bar-mode -1)
 
 ;; メニューバーを非表示
-;(menu-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; スクロールバー非表示
 (set-scroll-bar-mode nil)
