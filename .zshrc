@@ -76,12 +76,20 @@ screen*)
     ;;
 esac
 
+# pyenv root
+export PYENV_ROOT="${HOME}/.pyenv"
+
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/development/flutter/bin:$PATH"
+export PATH="${PYENV_ROOT}/bin:$PATH"
 
-#for WSL permission
+# pyenv init
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
+# for WSL permission
 umask 022
 
 # git repo control ghq and peco
