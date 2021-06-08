@@ -85,9 +85,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/development/flutter/bin:$PATH"
 export PATH="${PYENV_ROOT}/bin:$PATH"
 
-# pyenv init
+# python setup
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
+export PIPENV_VENV_IN_PROJECT=true
 
 # for WSL permission
 umask 022
