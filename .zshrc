@@ -32,11 +32,15 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # pyenv root
 export PYENV_ROOT="${HOME}/.pyenv"
 
+# gem Home
+export GEM_HOME=$HOME/.gem
+
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/development/flutter/bin:$PATH"
 export PATH="${PYENV_ROOT}/bin:$PATH"
+export PATH=$GEM_HOME/bin:$PATH
 
 # python setup
 eval "$(pyenv init --path)"
