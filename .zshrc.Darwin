@@ -1,4 +1,1 @@
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
-
