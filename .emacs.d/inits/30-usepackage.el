@@ -203,16 +203,6 @@
     (setq plantuml-options "-charset UTF-8")
     )
 
-(use-package arduino-mode
-    :mode
-    (("\\.ino\\'" . arduino-mode))
-    )
-
-(use-package cuda-mode
-    :mode
-    (("\\.cu\\'" . cuda-mode))
-    )
-
 (use-package cmake-mode
     :mode
     (("CMakeLists\\.txt\\'" . cmake-mode))
