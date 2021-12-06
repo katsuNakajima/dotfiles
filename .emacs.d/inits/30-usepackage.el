@@ -293,8 +293,9 @@
 (use-package editorconfig
     :init
     (editorconfig-mode 1)
-)
+    )
 
+(add-to-list 'exec-path (expand-file-name "/opt/homebrew/Cellar"))
 (add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
 
 (use-package rust-mode
