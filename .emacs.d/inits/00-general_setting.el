@@ -66,12 +66,6 @@
 ;; 長い行は折り返して表示
 (setq truncate-lines t)
 
-;; 行番号表示
-(global-linum-mode t)
-(set-face-attribute 'linum nil
-                    :foreground "#bf616a"
-                    :height 0.9)
-
 ;; 行番号フォーマット
 (setq linum-format "%4d")
 
