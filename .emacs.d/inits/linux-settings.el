@@ -1,4 +1,4 @@
-;for WSL setting japanese
+;;for WSL setting japanese
 (use-package mozc
-  :config
-  (setq default-input-method "japanese-mozc"))
+    :config
+    (setq default-input-method "japanese-mozc"))

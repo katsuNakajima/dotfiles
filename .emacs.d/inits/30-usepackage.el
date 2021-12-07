@@ -1,7 +1,9 @@
 (use-package all-the-icons)
+
 (use-package nyan-mode
     :config
     (nyan-mode 1))
+
 (use-package doom-themes
     :custom
     (doom-themes-enable-italic t)
@@ -36,7 +38,7 @@
     :diminish
     :bind
     (("C-c C-r" . ivy-resume)
-    ("C-x B" . ivy-switch-buffer-other-window))
+        ("C-x B" . ivy-switch-buffer-other-window))
     :custom
     (ivy-count-format "(%d/%d) ")
     (ivy-use-virtual-buffers t)
@@ -57,7 +59,7 @@
     :after ivy
     :bind
     (("C-s" . swiper)
-    ("C-r" . swiper)))
+        ("C-r" . swiper)))
 
 (use-package magit
     :bind
@@ -85,8 +87,8 @@
 (use-package irony
     :config
     (use-package company-irony
-    :config
-    (push 'company-irony company-backends)))
+        :config
+        (push 'company-irony company-backends)))
 
 (use-package company-box
     :hook (company-mode . company-box-mode))
@@ -109,13 +111,13 @@
     :config
     (projectile-mode +1)
     (when (executable-find "ghq")
-    (setq projectile-known-projects
-        (mapcar
-        (lambda (x) (abbreviate-file-name x))
-        (split-string (shell-command-to-string "ghq list --full-path")))))
+        (setq projectile-known-projects
+            (mapcar
+                (lambda (x) (abbreviate-file-name x))
+                (split-string (shell-command-to-string "ghq list --full-path")))))
     (defun projectile-project-find-function (dir)
-    (let* ((root (projectile-project-root dir)))
-        (and root (cons 'transient root))))
+        (let* ((root (projectile-project-root dir)))
+            (and root (cons 'transient root))))
     (with-eval-after-load 'project
         (add-to-list 'project-find-functions 'projectile-project-find-function))
     :bind-keymap
@@ -145,21 +147,21 @@
     (lsp-ui-sideline-enable nil)
     :preface
     (defun ladicle/toggle-lsp-ui-doc ()
-    (interactive)
-    (if lsp-ui-doc-mode
-        (progn
-        (lsp-ui-doc-mode -1)
-        (lsp-ui-doc--hide-frame))
-        (lsp-ui-doc-mode 1)))
+        (interactive)
+        (if lsp-ui-doc-mode
+            (progn
+                (lsp-ui-doc-mode -1)
+                (lsp-ui-doc--hide-frame))
+            (lsp-ui-doc-mode 1)))
     :bind
     (:map lsp-mode-map
-    ([remap xref-find-references] . lsp-ui-peek-find-references)
-    ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-    ("C-c i"   . lsp-ui-peek-find-implementation)
-    ("C-c m"   . lsp-ui-imenu)
-    ("C-c s"   . lsp-ui-sideline-mode)
-    ("C-c f"   . lsp-format-buffer)
-    ("C-c d"   . ladicle/toggle-lsp-ui-doc))
+        ([remap xref-find-references] . lsp-ui-peek-find-references)
+        ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+        ("C-c i"   . lsp-ui-peek-find-implementation)
+        ("C-c m"   . lsp-ui-imenu)
+        ("C-c s"   . lsp-ui-sideline-mode)
+        ("C-c f"   . lsp-format-buffer)
+        ("C-c d"   . ladicle/toggle-lsp-ui-doc))
     :hook
     (lsp-mode . lsp-ui-mode)
     )
@@ -168,12 +170,12 @@
 (use-package ccls
     :custom (ccls-executable "/usr/local/bin/ccls")
     :hook ((c-mode c++-mode objc-mode) .
-        (lambda () (require 'ccls) (lsp))))
+              (lambda () (require 'ccls) (lsp))))
 
 (use-package flymake
     :config
     (setq flymake-no-changes-timeout 2)
-;; https://github.com/emacs-ess/ESS/issues/883
+    ;; https://github.com/emacs-ess/ESS/issues/883
     (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
     )
 
@@ -188,8 +190,8 @@
 (use-package markdown-mode
     :mode
     (("\\.text\\'" . markdown-mode)
-    ("\\.markdown\\'" . markdown-mode)
-    ("\\.md\\'" . markdown-mode))
+        ("\\.markdown\\'" . markdown-mode)
+        ("\\.md\\'" . markdown-mode))
     )
 
 (use-package plantuml-mode
@@ -199,7 +201,7 @@
     (setq plantuml-jar-path "/home/nakaji-wsl/plantuml.jar")
     (setq plantuml-default-exec-mode 'jar)
     (setq plantuml-output-type "png")
-;;日本語を含むUMLを書く場合はUTF-8を指定
+    ;;日本語を含むUMLを書く場合はUTF-8を指定
     (setq plantuml-options "-charset UTF-8")
     )
 
@@ -211,7 +213,7 @@
 (use-package yaml-mode
     :mode (("\\.yml\\'" . yaml-mode))
     :bind ( :map yaml-mode-map
-    ("C-m" . newline-and-indent))
+              ("C-m" . newline-and-indent))
     )
 
 (use-package yasnippet
@@ -299,8 +301,8 @@
 (use-package lsp-pyright
     :ensure t
     :hook (python-mode . (lambda ()
-    (require 'lsp-pyright)
-    (lsp))))  ; or lsp-deferred
+                             (require 'lsp-pyright)
+                             (lsp))))  ;; or lsp-deferred
 
 (use-package ace-window
     :bind
@@ -313,60 +315,59 @@
     :defer t
     :init
     (progn
-;; enabled emoji in buffer
-    (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
-    (add-hook 'markdown-mode-hook 'emoji-cheat-sheet-plus-display-mode)
-    (add-hook 'magit-log-mode-hook 'emoji-cheat-sheet-plus-display-mode)))
+        ;; enabled emoji in buffer
+        (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+        (add-hook 'markdown-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+        (add-hook 'magit-log-mode-hook 'emoji-cheat-sheet-plus-display-mode)))
 
 (use-package google-translate
     :bind
     (("C-c t" . google-translate-enja-or-jaen))
     :config
-    ;(setq google-translate-translation-directions-alist '(("en" . "ja") ("ja" . "en")))
     (defun google-translate-enja-or-jaen (&optional string)
         "Translate words in region or current position. Can also specify query with C-u"
         (interactive)
         (setq string
             (cond ((stringp string) string)
                 (current-prefix-arg
-                (read-string "Google Translate: "))
+                    (read-string "Google Translate: "))
                 ((use-region-p)
-                (buffer-substring (region-beginning) (region-end)))
+                    (buffer-substring (region-beginning) (region-end)))
                 (t
-                (thing-at-point 'word))))
-    (let* ((asciip (string-match
-                    (format "\\`[%s]+\\'" "[:ascii:]’“”–")
-                    string)))
-        (run-at-time 0.1 nil 'deactivate-mark)
-        (google-translate-translate
-        (if asciip "en" "ja")
-        (if asciip "ja" "en")
-        string)))
+                    (thing-at-point 'word))))
+        (let* ((asciip (string-match
+                           (format "\\`[%s]+\\'" "[:ascii:]’“”–")
+                           string)))
+            (run-at-time 0.1 nil 'deactivate-mark)
+            (google-translate-translate
+                (if asciip "en" "ja")
+                (if asciip "ja" "en")
+                string)))
 
     (defun remove-c-comment (args)
         (let ((text (nth 2 args)))
-        (setf (nth 2 args)
-        (replace-regexp-in-string "\n" " "
-        (replace-regexp-in-string "[ \t]*//[/*!]*[ \t]+" ""
-        (replace-regexp-in-string "[ \t]+\\(\\*[ \t]+\\)+" " " text))))
-        args))
+            (setf (nth 2 args)
+                (replace-regexp-in-string "\n" " "
+                    (replace-regexp-in-string "[ \t]*//[/*!]*[ \t]+" ""
+                        (replace-regexp-in-string "[ \t]+\\(\\*[ \t]+\\)+" " " text))))
+            args))
 
     (advice-add 'google-translate-request :filter-args
-            #'remove-c-comment)
+        #'remove-c-comment)
 
     :config/el-patch
     (el-patch-defun google-translate--search-tkk ()
-    "Search TKK."
-    (el-patch-swap
-        (let ((start nil)
-            (tkk nil)
-            (nums '()))
-        (setq start (search-forward ",tkk:'"))
-        (search-forward "',")
-        (backward-char 2)
-        (setq tkk (buffer-substring start (point)))
-        (setq nums (split-string tkk "\\."))
-        (list (string-to-number (car nums))
-            (string-to-number (car (cdr nums)))))
-    (list 430675 2721866130)))
-)
+        "Search TKK."
+        (el-patch-swap
+            (let ((start nil)
+                     (tkk nil)
+                     (nums '()))
+                (setq start (search-forward ",tkk:'"))
+                (search-forward "',")
+                (backward-char 2)
+                (setq tkk (buffer-substring start (point)))
+                (setq nums (split-string tkk "\\."))
+                (list (string-to-number (car nums))
+                    (string-to-number (car (cdr nums)))))
+            (list 430675 2721866130)))
+    )
