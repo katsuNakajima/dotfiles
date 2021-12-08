@@ -226,7 +226,34 @@
   :straight t
   :bind (("M-n" . flycheck-next-error)
          ("M-p" . flycheck-previous-error))
+  :config
+  (leaf consult-flycheck
+    :doc "Provides the command `consult-flycheck'"
+    :req "consult-0.8" "flycheck-31" "emacs-26.1"
+    :tag "emacs>=26.1"
+    :url "https://github.com/minad/consult"
+    :added "2021-12-09"
+    :emacs>= 26.1
+    :straight t
+    :bind (:evil-normal-state-map
+           ("<leader>ee" . consult-flycheck))
+    :after consult flycheck)
   :global-minor-mode global-flycheck-mode)
+
+(leaf flycheck-posframe
+  :doc "Show flycheck error messages using posframe.el"
+  :req "flycheck-0.24" "emacs-26" "posframe-0.7.0"
+  :tag "emacs>=26"
+  :url "https://github.com/alexmurray/flycheck-posframe"
+  :added "2021-12-09"
+  :emacs>= 26
+  :straight t
+  :config
+  (with-eval-after-load 'flycheck
+    (require 'flycheck-posframe nil nil)
+    (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+  :global-minor-mode flycheck-posframe-mode
+  :after flycheck posframe)
 
 (leaf company
   :doc "Modular text completion framework"
