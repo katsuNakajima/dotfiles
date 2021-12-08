@@ -594,9 +594,6 @@
   :emacs>= 26.0
   :straight t
   :hook (company-mode-hook)
-  :custom
-  (company-box-icons-alist . 'company-box-icons-all-the-icons)
-  (company-box-doc-enable . nil)
   :after company frame-local all-the-icons)
 
 (add-to-list 'exec-path (expand-file-name "/opt/homebrew/Cellar"))
@@ -698,6 +695,7 @@
   :emacs>= 25.1
   :straight t
   :config
+  (require 'bind-key)
   (let ((custom--inhibit-theme-enable nil))
     (unless (memq 'use-package custom-known-themes)
       (deftheme use-package)
