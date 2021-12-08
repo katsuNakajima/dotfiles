@@ -262,6 +262,7 @@
   :url "http://company-mode.github.io/"
   :emacs>= 24.3
   :straight t
+  :require t
   :blackout t
   :leaf-defer nil
   :bind ((company-active-map
@@ -274,10 +275,21 @@
          (company-search-map
           ("C-n" . company-select-next)
           ("C-p" . company-select-previous)))
-  :custom ((company-idle-delay . 0)
+  :custom ((company-idle-delay . 0.15)
            (company-minimum-prefix-length . 1)
            (company-transformers . '(company-sort-by-occurrence)))
-  :global-minor-mode global-company-mode)
+  :global-minor-mode global-company-mode
+  :config
+  (leaf company-box
+    :doc "Company front-end with icons"
+    :req "emacs-26.0.91" "dash-2.19.0" "company-0.9.6" "frame-local-0.0.1"
+    :tag "convenience" "front-end" "completion" "company" "emacs>=26.0.91"
+    :url "https://github.com/sebastiencs/company-box"
+    :added "2021-12-08"
+    :emacs>= 26.0
+    :straight t
+    :require t
+    :hook (company-mode-hook)))
 
 (leaf company-c-headers
   :doc "Company mode backend for C/C++ header files"
@@ -585,17 +597,6 @@
     (push 'company-irony company-backends)
     :after company irony))
 
-(leaf company-box
-  :doc "Company front-end with icons"
-  :req "emacs-26.0.91" "dash-2.19.0" "company-0.9.6" "frame-local-0.0.1"
-  :tag "convenience" "front-end" "completion" "company" "emacs>=26.0.91"
-  :url "https://github.com/sebastiencs/company-box"
-  :added "2021-12-08"
-  :emacs>= 26.0
-  :straight t
-  :hook (company-mode-hook)
-  :after company frame-local all-the-icons)
-
 (add-to-list 'exec-path (expand-file-name "/opt/homebrew/Cellar"))
 (add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
 
@@ -803,22 +804,6 @@
    ("C-l C-d" . lsp-ui-peek-find-definitions)
    ("C-l C-r" . lsp-ui-peek-find-references))
   :after lsp-mode markdown-mode)
-
-(leaf company-lsp
-  :url "https://github.com/tigersoldier/company-lsp"
-  :straight t
-  :commands company-lsp company
-  :custom
-  (company-lsp-cache-candidates . nil)
-  (company-lsp-async . t)
-  (company-lsp-enable-recompletion . t)
-  (company-lsp-enable-snippet . t)
-  :after
-  (:all lsp-mode lsp-ui company yasnippet)
-  ;; lsp-treema
-  ;; LSP用treemacs
-  (leaf lsp-treemacs :ensure t)
-  )
 
 (provide 'init)
 
