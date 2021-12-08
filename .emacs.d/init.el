@@ -308,9 +308,18 @@
   :url "http://github.com/joaotavora/yasnippet"
   :added "2021-12-08"
   :straight t
-  :init
-  (yas-global-mode 1)
-  :require t)
+  :require t
+  :global-minor-mode yas-global-mode
+  :config
+  (leaf yasnippet-snippets
+    :doc "Collection of yasnippet snippets"
+    :req "yasnippet-0.8.0"
+    :tag "snippets"
+    :url "https://github.com/AndreaCrotti/yasnippet-snippets"
+    :added "2021-12-09"
+    :straight t
+    :require t
+    :after yasnippet))
 
 (leaf nyan-mode
   :doc "Nyan Cat shows position in current buffer in mode-line."
