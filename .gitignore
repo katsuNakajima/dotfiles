@@ -21,5 +21,8 @@
 .emacs.d/emojis/
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/projectile.cache
+.emacs.d/backup/
+.emacs.d/init.elc
+.emacs.d/var/
 Brewfile.lock.json
 .DS_Store
