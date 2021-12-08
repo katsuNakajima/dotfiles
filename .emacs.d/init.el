@@ -665,6 +665,46 @@
   :added "2021-12-08"
   :straight t)
 
+(leaf projectile
+  :doc "Manage and navigate projects in Emacs easily"
+  :req "emacs-25.1"
+  :tag "convenience" "project" "emacs>=25.1"
+  :url "https://github.com/bbatsov/projectile"
+  :added "2021-12-09"
+  :emacs>= 25.1
+  :straight t
+  :config
+  (let ((custom--inhibit-theme-enable nil))
+    (unless (memq 'use-package custom-known-themes)
+      (deftheme use-package)
+      (enable-theme 'use-package)
+      (setq custom-enabled-themes (remq 'use-package custom-enabled-themes)))
+    (custom-theme-set-variables 'use-package
+                                '(projectile-switch-project-action 'projectile-dired nil nil "Customized with use-package projectile")))
+  (with-eval-after-load 'projectile
+    (projectile-mode 1)
+    (when (executable-find "ghq")
+      (setq projectile-known-projects (mapcar
+                                       (lambda (x)
+                                         (abbreviate-file-name x))
+                                       (split-string
+                                        (shell-command-to-string "ghq list --full-path")))))
+    (defun projectile-project-find-function (dir)
+      (let* ((root (projectile-project-root dir)))
+        (and root
+             (cons 'transient root))))
+
+    (with-eval-after-load 'project
+      (add-to-list 'project-find-functions 'projectile-project-find-function))
+
+    (if (fboundp 'diminish)
+        (diminish 'projectile-mode)))
+
+  (bind-key "C-c p"
+            #'(lambda nil
+                (interactive)
+                (use-package-autoload-keymap 'projectile-command-map 'projectile nil))))
+
 (leaf lsp-mode
   :doc "LSP mode"
   :req "emacs-26.1" "dash-2.18.0" "f-0.20.0" "ht-2.3" "spinner-1.7.3" "markdown-mode-2.3" "lv-0"
