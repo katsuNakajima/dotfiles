@@ -564,6 +564,27 @@
   :emacs>= 24.4
   :straight t)
 
+(leaf irony
+  :doc "C/C++ minor mode powered by libclang"
+  :req "cl-lib-0.5" "json-1.2"
+  :tag "tools" "convenience" "c"
+  :url "https://github.com/Sarcasm/irony-mode"
+  :added "2021-12-09"
+  :straight t
+  :config
+  (leaf company-irony
+    :doc "company-mode completion back-end for irony-mode"
+    :req "emacs-24.1" "company-0.8.0" "irony-1.1.0" "cl-lib-0.5"
+    :tag "convenience" "emacs>=24.1"
+    :url "https://github.com/Sarcasm/company-irony/"
+    :added "2021-12-09"
+    :emacs>= 24.1
+    :straight t
+    :require t
+    :config
+    (push 'company-irony company-backends)
+    :after company irony))
+
 (leaf company-box
   :doc "Company front-end with icons"
   :req "emacs-26.0.91" "dash-2.19.0" "company-0.9.6" "frame-local-0.0.1"
@@ -573,7 +594,10 @@
   :emacs>= 26.0
   :straight t
   :hook (company-mode-hook)
-  :after company frame-local)
+  :custom
+  (company-box-icons-alist . 'company-box-icons-all-the-icons)
+  (company-box-doc-enable . nil)
+  :after company frame-local all-the-icons)
 
 (add-to-list 'exec-path (expand-file-name "/opt/homebrew/Cellar"))
 (add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
