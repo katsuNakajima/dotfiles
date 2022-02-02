@@ -1,4 +1,4 @@
 git config --global user.name "KatsuNakajima"
 git config --global user.email "40666782+katsuNakajima@users.noreply.github.com"
-git config --global ghq.root /Users/katsu/work
+git config --global ghq.root $HOME/work
 git config --global init.defaultbranch main

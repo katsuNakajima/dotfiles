@@ -34,6 +34,10 @@ export PYENV_ROOT="${HOME}/.pyenv"
 # gem Home
 export GEM_HOME=$HOME/.gem
 
+#GOPATH
+export GOPATH=$HOME/.go
+export GO111MODULE=on
+
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -41,6 +45,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/fvm/default/bin"
 export PATH="${PYENV_ROOT}/bin:$PATH"
 export PATH=$GEM_HOME/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 
 # python setup
 eval "$(pyenv init --path)"
