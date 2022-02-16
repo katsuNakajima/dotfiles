@@ -1,0 +1,75 @@
+[atcoder]
+submit_via_binary = false # submit via binary by default
+use_cross = false         # use `cross` instead of `cargo` when generating binaries
+binary_column = 80        # maximum column number of generated binary (0 for no wrapping)
+update_interval = 1000    # interval time of fetching result (ms)
+strip_path = "strip"      # specify `strip` command path. NOTE: if you use macOS, you have to install GNU strip and specify its path here.
+
+[profile]
+# target to use to generate binary
+target = "x86_64-unknown-linux-musl"
+
+[profile.release]
+lto = true
+panic = 'abort'
+
+# dependencies added to new project
+[dependencies]
+# proconio = "*"
+# competitive = { git = "https://github.com/tanakh/competitive-rs.git" }
+
+[project]
+# to create `rust-toolchain` file, uncomment this line.
+# rustc_version = "1.15.1"
+
+# source code template
+template = """
+#[allow(unused_macros)]
+macro_rules! parse_line {
+    ( $t:ty ) => (
+        {
+            let mut line = String::new();
+            ::std::io::stdin().read_line(&mut line).unwrap();
+            let mut iter = line.split_whitespace();
+            iter.next().unwrap().parse::<$t>().unwrap()
+        }
+    );
+
+    ( $( $t:ty), +) => (
+        {
+            let mut line = String::new();
+            ::std::io::stdin().read_line(&mut line).unwrap();
+            let mut iter = line.split_whitespace();
+            ( $(iter.next().unwrap().parse::<$t>().unwrap()),* )
+        }
+    );
+}
+
+#[allow(unused_macros)]
+macro_rules! read_line {
+    () => (
+        {
+            let mut line = String::new();
+            ::std::io::stdin().read_line(&mut line).unwrap();
+            line.pop();
+            line
+        }
+    )
+}
+
+#[allow(unused_macros)]
+macro_rules! parse_vec {
+    ( $t:ty ) => (
+        {
+            let mut line = String::new();
+            ::std::io::stdin().read_line(&mut line).unwrap();
+            let iter = line.split_whitespace();
+            iter.map(|v| v.parse::<$t>().unwrap()).collect::<Vec<_>>()
+        }
+    )
+}
+
+fn main() {
+    unimplemented!();
+}
+"""
