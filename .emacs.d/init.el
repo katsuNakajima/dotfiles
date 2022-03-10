@@ -59,7 +59,7 @@
 ;; Initial frame settings require HackGen35Nerd
 (setq default-frame-alist
       (append (list
-               '(font . "HackGen35Nerd-16"))
+               '(font . "HackGen35Nerd-20"))
               default-frame-alist))
 
 (leaf cus-edit
