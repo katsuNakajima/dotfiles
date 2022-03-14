@@ -24,5 +24,6 @@
 .emacs.d/backup/
 .emacs.d/init.elc
 .emacs.d/var/
+.emacs.d/bookmarks
 Brewfile.lock.json
 .DS_Store
