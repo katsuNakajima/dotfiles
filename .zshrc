@@ -55,9 +55,29 @@ export PIPENV_VENV_IN_PROJECT=true
 # for WSL permission
 umask 022
 
+# cdr
+if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
+    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+    add-zsh-hook chpwd chpwd_recent_dirs
+    zstyle ':completion:*' recent-dirs-insert both
+    zstyle ':chpwd:*' recent-dirs-default true
+    zstyle ':chpwd:*' recent-dirs-max 1000
+    zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
+fi
+
 # git repo control ghq and peco
 alias cr='cd $(ghq root)/$(ghq list | peco)'
 alias crh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+
+# histry with peco
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
 
 # exa
 if [[ $(command -v exa) ]]; then

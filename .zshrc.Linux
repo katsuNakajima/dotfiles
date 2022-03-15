@@ -1,5 +1,3 @@
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
-
 # cdr with peco
 function peco-cdr () {
     local selected_dir="$(cdr -l | gsed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
