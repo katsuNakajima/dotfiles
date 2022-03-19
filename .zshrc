@@ -1,4 +1,4 @@
-# loading mac settings
+# loading OS settings
 [ -f $HOME/.zshrc.`uname` ] && source $HOME/dotfiles/.zshrc.`uname`
 
 # Use emacs keybindings even if our EDITOR is set to vi
