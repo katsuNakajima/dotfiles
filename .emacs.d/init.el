@@ -755,7 +755,7 @@
    ("C-l h"    . lsp-describe-session)
    ("C-l t"    . lsp-goto-type-definition)
    ("C-l r"    . lsp-rename)
-   ("C-l <f5>" . lsp-restart-workspace)
+   ("C-l <f5>" . lsp-workspace-restart)
    ("C-l l"    . lsp-lens-mode))
   :after spinner markdown-mode lv)
 
@@ -774,11 +774,11 @@
   (lsp-ui-doc-enable . t)
   (lsp-ui-doc-header . t)
   (lsp-ui-doc-include-signature . t)
-  (lsp-ui-doc-position . 'bottom)
+  (lsp-ui-doc-position . 'at-point);; top, bottom, or at-point
   (lsp-ui-doc-max-width . 150)
   (lsp-ui-doc-max-height . 30)
   (lsp-ui-doc-use-childframe . t)
-  (lsp-ui-doc-use-webkit . t)
+  (lsp-ui-doc-use-webkit . nil)
   ;; lsp-ui-flycheck
   (lsp-ui-flycheck-enable . t)
   ;; lsp-ui-sideline
