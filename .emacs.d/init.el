@@ -6,21 +6,13 @@
 
 ;;; Code:
 
-;; straight.el settings
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(straight-use-package 'leaf)
-(straight-use-package 'leaf-keywords)
+;; this enables this running method
+;;   emacs -q -l ~/.debug.emacs.d/init.el
+(eval-and-compile
+  (when (or load-file-name byte-compile-current-file)
+    (setq user-emacs-directory
+          (expand-file-name
+           (file-name-directory (or load-file-name byte-compile-current-file))))))
 
 ;; leaf settings
 (eval-and-compile
@@ -34,10 +26,11 @@
     (package-install 'leaf))
 
   (leaf leaf-keywords
+    :ensure t
     :init
     ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
     (leaf hydra :ensure t)
-    ;;(leaf el-get :ensure t)
+    (leaf el-get :ensure t)
     (leaf blackout :ensure t)
     :config
     ;; initialize leaf-keywords.el
@@ -45,8 +38,7 @@
 
 (leaf leaf
   :config
-  (leaf leaf-convert
-    :config (leaf use-package :ensure t))
+  (leaf leaf-convert :ensure t)
   (leaf leaf-tree
     :custom ((imenu-list-size . 30)
              (imenu-list-position . 'left))))
@@ -166,7 +158,7 @@
   :tag "matching" "emacs>=24.5"
   :url "https://github.com/abo-abo/swiper"
   :emacs>= 24.5
-  :straight t
+  :ensure t
   :blackout t
   :leaf-defer nil
   :custom ((ivy-initial-inputs-alist . nil)
@@ -179,7 +171,7 @@
     :tag "matching" "emacs>=24.5"
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
-    :straight t
+    :ensure t
     :bind (("C-s" . swiper)))
 
   (leaf counsel
@@ -188,7 +180,7 @@
     :tag "tools" "matching" "convenience" "emacs>=24.5"
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
-    :straight t
+    :ensure t
     :blackout t
     :bind (("C-S-s" . counsel-imenu)
            ("C-x C-r" . counsel-recentf))
@@ -202,7 +194,7 @@
   :tag "extensions" "emacs>=25.1"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :custom ((prescient-aggressive-file-save . t))
   :global-minor-mode prescient-persist-mode)
 
@@ -212,7 +204,7 @@
   :tag "extensions" "emacs>=25.1"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :after prescient ivy
   :custom ((ivy-prescient-retain-classic-highlighting . t))
   :global-minor-mode t)
@@ -223,7 +215,7 @@
   :tag "minor-mode" "tools" "languages" "convenience" "emacs>=24.3"
   :url "http://www.flycheck.org"
   :emacs>= 24.3
-  :straight t
+  :ensure t
   :bind (("M-n" . flycheck-next-error)
          ("M-p" . flycheck-previous-error))
   :config
@@ -234,7 +226,7 @@
     :url "https://github.com/minad/consult"
     :added "2021-12-09"
     :emacs>= 26.1
-    :straight t
+    :ensure t
     :bind (:evil-normal-state-map
            ("<leader>ee" . consult-flycheck))
     :after consult flycheck)
@@ -247,7 +239,7 @@
   :url "https://github.com/alexmurray/flycheck-posframe"
   :added "2021-12-09"
   :emacs>= 26
-  :straight t
+  :ensure t
   :config
   (with-eval-after-load 'flycheck
     (require 'flycheck-posframe nil nil)
@@ -261,8 +253,7 @@
   :tag "matching" "convenience" "abbrev" "emacs>=24.3"
   :url "http://company-mode.github.io/"
   :emacs>= 24.3
-  :straight t
-  :require t
+  :ensure t
   :blackout t
   :leaf-defer nil
   :bind ((company-active-map
@@ -287,7 +278,7 @@
     :url "https://github.com/sebastiencs/company-box"
     :added "2021-12-08"
     :emacs>= 26.0
-    :straight t
+    :ensure t
     :require t
     :hook (company-mode-hook)))
 
@@ -297,7 +288,7 @@
   :tag "company" "development" "emacs>=24.1"
   :added "2020-03-25"
   :emacs>= 24.1
-  :straight t
+  :ensure t
   :after company
   :defvar company-backends
   :config
@@ -310,7 +301,7 @@
   :url "https://github.com/magit/magit"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :bind (("C-x g" . magit-status)))
 
 (leaf yasnippet
@@ -319,7 +310,7 @@
   :tag "emulation" "convenience"
   :url "http://github.com/joaotavora/yasnippet"
   :added "2021-12-08"
-  :straight t
+  :ensure t
   :require t
   :global-minor-mode yas-global-mode
   :config
@@ -329,7 +320,7 @@
     :tag "snippets"
     :url "https://github.com/AndreaCrotti/yasnippet-snippets"
     :added "2021-12-09"
-    :straight t
+    :ensure t
     :require t
     :after yasnippet))
 
@@ -338,8 +329,7 @@
   :tag "build something amazing" "pop tart cat" "scrolling" "lulz" "cat" "nyan"
   :url "https://github.com/TeMPOraL/nyan-mode/"
   :added "2021-12-08"
-  :straight t
-  :require t
+  :ensure t
   :config
   (nyan-mode 1))
 
@@ -350,7 +340,7 @@
   :url "https://github.com/domtronn/all-the-icons.el"
   :added "2021-12-08"
   :emacs>= 24.3
-  :straight t
+  :ensure t
   :require t)
 
 (leaf doom-themes
@@ -360,7 +350,7 @@
   :url "https://github.com/hlissner/emacs-doom-themes"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :custom-face ((doom-modeline-bar quote
                                    ((t
                                      (:background "#6272a4")))))
@@ -386,7 +376,7 @@
   :url "https://github.com/seagle0128/doom-modeline"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :hook (after-init-hook)
   :config
   (let ((custom--inhibit-theme-enable nil))
@@ -406,7 +396,7 @@
   :url "https://github.com/hlissner/emacs-hide-mode-line"
   :added "2021-12-08"
   :emacs>= 24.4
-  :straight t
+  :ensure t
   :hook (neotree-mode-hook imenu-list-minor-mode-hook minimap-mode-hook))
 
 (leaf all-the-icons-ivy-rich
@@ -416,7 +406,7 @@
   :url "https://github.com/seagle0128/all-the-icons-ivy-rich"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :config
   (with-eval-after-load 'ivy
     (all-the-icons-ivy-rich-mode 1)
@@ -429,7 +419,7 @@
   :url "https://github.com/Yevgnen/ivy-rich"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :config
   (with-eval-after-load 'ivy
     (ivy-rich-mode 1)
@@ -441,7 +431,7 @@
   :tag "convenience"
   :url "https://github.com/Malabarba/beacon"
   :added "2021-12-08"
-  :straight t
+  :ensure t
   :init
   (let ((custom--inhibit-theme-enable nil))
     (unless (memq 'use-package custom-known-themes)
@@ -461,7 +451,7 @@
   :url "https://github.com/emacsorphanage/git-gutter"
   :added "2021-12-08"
   :emacs>= 24.4
-  :straight t
+  :ensure t
   :custom-face ((git-gutter:modified quote
                                      ((t
                                        (:background "#f1fa8c"))))
@@ -492,7 +482,7 @@
   :url "https://github.com/DarthFennec/highlight-indent-guides"
   :added "2021-12-08"
   :emacs>= 24.1
-  :straight t
+  :ensure t
   :hook (prog-mode-hook yaml-mode-hook)
   :config
   (let ((custom--inhibit-theme-enable nil))
@@ -513,7 +503,7 @@
   :tag "tools" "lisp" "convenience" "faces"
   :url "https://github.com/Fanael/rainbow-delimiters"
   :added "2021-12-08"
-  :straight t
+  :ensure t
   :hook (prog-mode-hook))
 
 (leaf which-key
@@ -523,7 +513,7 @@
   :url "https://github.com/justbur/emacs-which-key"
   :added "2021-12-08"
   :emacs>= 24.4
-  :straight t
+  :ensure t
   :hook (after-init-hook)
   :config
   (with-eval-after-load 'which-key
@@ -537,7 +527,8 @@
   :url "https://github.com/abo-abo/avy"
   :added "2021-12-08"
   :emacs>= 24.1
-  :straight t)
+  :ensure t
+  )
 
 (leaf ace-window
   :doc "Quickly switch windows."
@@ -545,7 +536,7 @@
   :tag "location" "window"
   :url "https://github.com/abo-abo/ace-window"
   :added "2021-12-08"
-  :straight t
+  :ensure t
   :bind (("C-'" . ace-window))
   :custom-face ((aw-leading-char-face quote
                                       ((t
@@ -557,7 +548,7 @@
   :tag "wp" "convenience" "emulations"
   :url "http://www.emacswiki.org/emacs/download/volatile-highlights.el"
   :added "2021-12-08"
-  :straight t
+  :ensure t
   :hook (after-init-hook)
   :custom-face ((vhl/default-face quote
                                   ((nil
@@ -574,7 +565,8 @@
   :url "http://github.com/DarwinAwardWinner/amx/"
   :added "2021-12-08"
   :emacs>= 24.4
-  :straight t)
+  :ensure t
+  )
 
 (leaf irony
   :doc "C/C++ minor mode powered by libclang"
@@ -582,7 +574,7 @@
   :tag "tools" "convenience" "c"
   :url "https://github.com/Sarcasm/irony-mode"
   :added "2021-12-09"
-  :straight t
+  :ensure t
   :config
   (leaf company-irony
     :doc "company-mode completion back-end for irony-mode"
@@ -591,7 +583,7 @@
     :url "https://github.com/Sarcasm/company-irony/"
     :added "2021-12-09"
     :emacs>= 24.1
-    :straight t
+    :ensure t
     :require t
     :config
     (push 'company-irony company-backends)
@@ -607,7 +599,7 @@
   :url "https://github.com/spotify/dockerfile-mode"
   :added "2021-12-08"
   :emacs>= 24
-  :straight
+  :ensure t
   :mode ("Dockerfile\\'"))
 
 (leaf cmake-mode
@@ -616,7 +608,7 @@
   :tag "emacs>=24.1"
   :added "2021-12-08"
   :emacs>= 24.1
-  :straight t
+  :ensure t
   :mode ("CMakeLists\\.txt\\'"))
 
 (leaf yaml-mode
@@ -626,7 +618,7 @@
   :url "https://github.com/yoshiki/yaml-mode"
   :added "2021-12-08"
   :emacs>= 24.1
-  :straight t
+  :ensure t
   :bind ((yaml-mode-map
           ("C-m" . newline-and-indent)))
   :mode ("\\.yml\\'"))
@@ -638,7 +630,7 @@
   :url "https://jblevins.org/projects/markdown-mode/"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :mode
   (("\\.text\\'" . markdown-mode)
    ("\\.markdown\\'" . markdown-mode)
@@ -651,7 +643,8 @@
   :url "https://github.com/rust-lang/rust-mode"
   :added "2021-12-08"
   :emacs>= 25.1
-  :straight t)
+  :ensure t
+  )
 
 (leaf cargo
   :doc "Emacs Minor Mode for Cargo, Rust's Package Manager."
@@ -659,16 +652,7 @@
   :tag "tools" "emacs>=24.3"
   :added "2021-12-08"
   :emacs>= 24.3
-  :straight t
-  :after markdown-mode)
-
-(leaf cargo
-  :doc "Emacs Minor Mode for Cargo, Rust's Package Manager."
-  :req "emacs-24.3" "markdown-mode-2.4"
-  :tag "tools" "emacs>=24.3"
-  :added "2021-12-08"
-  :emacs>= 24.3
-  :straight t
+  :ensure t
   :commands cargo-minor-mode
   :hook ((rust-mode-hook . cargo-minor-mode))
   :after markdown-mode)
@@ -680,12 +664,14 @@
   :url "https://github.com/Malabarba/spinner.el"
   :added "2021-12-08"
   :emacs>= 24.3
-  :straight t)
+  :ensure t
+  )
 
 (leaf lv
   :doc "Other echo area"
   :added "2021-12-08"
-  :straight t)
+  :ensure t
+  )
 
 (leaf projectile
   :doc "Manage and navigate projects in Emacs easily"
@@ -694,7 +680,7 @@
   :url "https://github.com/bbatsov/projectile"
   :added "2021-12-09"
   :emacs>= 25.1
-  :straight t
+  :ensure t
   :config
   (require 'bind-key)
   (let ((custom--inhibit-theme-enable nil))
@@ -735,7 +721,7 @@
   :url "https://github.com/emacs-lsp/lsp-mode"
   :added "2021-12-08"
   :emacs>= 26.1
-  :straight t
+  :ensure t
   :commands lsp
   :hook
   (rust-mode-hook . lsp)
@@ -766,7 +752,7 @@
   :url "https://github.com/emacs-lsp/lsp-ui"
   :added "2021-12-08"
   :emacs>= 26.1
-  :straight t
+  :ensure t
   :commands lsp-ui-mode
   :after lsp-mode
   :custom
