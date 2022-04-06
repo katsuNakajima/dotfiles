@@ -247,7 +247,7 @@
     (require 'flycheck-posframe nil nil)
     (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
   :global-minor-mode flycheck-posframe-mode
-  :after flycheck posframe)
+  :after flycheck)
 
 (leaf company
   :doc "Modular text completion framework"
@@ -736,6 +736,7 @@
    (lsp-message-project-root-warning . t)
    (create-lockfiles . nil)
    (lsp-file-watch-threshold .nil)
+   ( lsp-prefer-capf . t)
    (lsp-rust-server . 'rust-analyzer))
   :preface (global-unset-key (kbd "C-l"))
   :bind
