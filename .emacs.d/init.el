@@ -40,10 +40,12 @@
   :config
   (leaf leaf-convert :ensure t)
   (leaf leaf-tree
+    :ensure t
     :custom ((imenu-list-size . 30)
              (imenu-list-position . 'left))))
 
 (leaf macrostep
+  :ensure t
   :bind (("C-c e" . macrostep-expand)))
 
 ;; Emacs settings
@@ -654,8 +656,7 @@
   :emacs>= 24.3
   :ensure t
   :commands cargo-minor-mode
-  :hook ((rust-mode-hook . cargo-minor-mode))
-  :after markdown-mode)
+  :hook ((rust-mode-hook . cargo-minor-mode)))
 
 (leaf spinner
   :doc "Add spinners and progress-bars to the mode-line for ongoing operations"
@@ -722,6 +723,7 @@
   :added "2021-12-08"
   :emacs>= 26.1
   :ensure t
+  :init (yas-global-mode)
   :commands lsp
   :hook
   (rust-mode-hook . lsp)
@@ -742,8 +744,7 @@
    ("C-l t"    . lsp-goto-type-definition)
    ("C-l r"    . lsp-rename)
    ("C-l <f5>" . lsp-workspace-restart)
-   ("C-l l"    . lsp-lens-mode))
-  :after spinner markdown-mode lv)
+   ("C-l l"    . lsp-lens-mode)))
 
 (leaf lsp-ui
   :doc "UI modules for lsp-mode"
