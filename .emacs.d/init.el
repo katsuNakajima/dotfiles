@@ -104,17 +104,17 @@
   :custom ((auto-revert-interval . 1))
   :global-minor-mode global-auto-revert-mode)
 
-(leaf cc-mode
-  :doc "major mode for editing C and similar languages"
-  :tag "builtin"
-  :defvar (c-basic-offset)
-  :bind (c-mode-base-map
-         ("C-c c" . compile))
-  :mode-hook
-  (c-mode-hook . ((c-set-style "bsd")
-                  (setq c-basic-offset 4)))
-  (c++-mode-hook . ((c-set-style "bsd")
-                    (setq c-basic-offset 4))))
+;; (leaf cc-mode
+;;   :doc "major mode for editing C and similar languages"
+;;   :tag "builtin"
+;;   :defvar (c-basic-offset)
+;;   :bind (c-mode-base-map
+;;          ("C-c c" . compile))
+;;   :mode-hook
+;;   (c-mode-hook . ((c-set-style "bsd")
+;;                   (setq c-basic-offset 4)))
+;;   (c++-mode-hook . ((c-set-style "bsd")
+;;                     (setq c-basic-offset 4))))
 
 (leaf delsel
   :doc "delete selection if you insert"
@@ -569,49 +569,6 @@
   :ensure t
   )
 
-(leaf irony
-  :doc "C/C++ minor mode powered by libclang"
-  :req "cl-lib-0.5" "json-1.2"
-  :tag "tools" "convenience" "c"
-  :url "https://github.com/Sarcasm/irony-mode"
-  :added "2021-12-09"
-  :ensure t
-  :config
-  (leaf company-irony
-    :doc "company-mode completion back-end for irony-mode"
-    :req "emacs-24.1" "company-0.8.0" "irony-1.1.0" "cl-lib-0.5"
-    :tag "convenience" "emacs>=24.1"
-    :url "https://github.com/Sarcasm/company-irony/"
-    :added "2021-12-09"
-    :emacs>= 24.1
-    :ensure t
-    :require t
-    :config
-    (push 'company-irony company-backends)
-    :after company irony))
-
-(add-to-list 'exec-path (expand-file-name "/opt/homebrew/Cellar"))
-(add-to-list 'exec-path (expand-file-name "~/.cargo/bin"))
-
-(leaf dockerfile-mode
-  :doc "Major mode for editing Docker's Dockerfiles"
-  :req "emacs-24"
-  :tag "docker" "emacs>=24"
-  :url "https://github.com/spotify/dockerfile-mode"
-  :added "2021-12-08"
-  :emacs>= 24
-  :ensure t
-  :mode ("Dockerfile\\'"))
-
-(leaf cmake-mode
-  :doc "major-mode for editing CMake sources"
-  :req "emacs-24.1"
-  :tag "emacs>=24.1"
-  :added "2021-12-08"
-  :emacs>= 24.1
-  :ensure t
-  :mode ("CMakeLists\\.txt\\'"))
-
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"
   :req "emacs-24.1"
@@ -623,174 +580,6 @@
   :bind ((yaml-mode-map
           ("C-m" . newline-and-indent)))
   :mode ("\\.yml\\'"))
-
-(leaf markdown-mode
-  :doc "Major mode for Markdown-formatted text"
-  :req "emacs-25.1"
-  :tag "itex" "github flavored markdown" "markdown" "emacs>=25.1"
-  :url "https://jblevins.org/projects/markdown-mode/"
-  :added "2021-12-08"
-  :emacs>= 25.1
-  :ensure t
-  :mode
-  (("\\.text\\'" . markdown-mode)
-   ("\\.markdown\\'" . markdown-mode)
-   ("\\.md\\'" . markdown-mode)))
-
-(leaf rust-mode
-  :doc "A major-mode for editing Rust source code"
-  :req "emacs-25.1"
-  :tag "languages" "emacs>=25.1"
-  :url "https://github.com/rust-lang/rust-mode"
-  :added "2021-12-08"
-  :emacs>= 25.1
-  :ensure t
-  )
-
-(leaf cargo
-  :doc "Emacs Minor Mode for Cargo, Rust's Package Manager."
-  :req "emacs-24.3" "markdown-mode-2.4"
-  :tag "tools" "emacs>=24.3"
-  :added "2021-12-08"
-  :emacs>= 24.3
-  :ensure t
-  :commands cargo-minor-mode
-  :hook ((rust-mode-hook . cargo-minor-mode)))
-
-(leaf spinner
-  :doc "Add spinners and progress-bars to the mode-line for ongoing operations"
-  :req "emacs-24.3"
-  :tag "mode-line" "processes" "emacs>=24.3"
-  :url "https://github.com/Malabarba/spinner.el"
-  :added "2021-12-08"
-  :emacs>= 24.3
-  :ensure t
-  )
-
-(leaf lv
-  :doc "Other echo area"
-  :added "2021-12-08"
-  :ensure t
-  )
-
-(leaf projectile
-  :doc "Manage and navigate projects in Emacs easily"
-  :req "emacs-25.1"
-  :tag "convenience" "project" "emacs>=25.1"
-  :url "https://github.com/bbatsov/projectile"
-  :added "2021-12-09"
-  :emacs>= 25.1
-  :ensure t
-  :config
-  (require 'bind-key)
-  (let ((custom--inhibit-theme-enable nil))
-    (unless (memq 'use-package custom-known-themes)
-      (deftheme use-package)
-      (enable-theme 'use-package)
-      (setq custom-enabled-themes (remq 'use-package custom-enabled-themes)))
-    (custom-theme-set-variables 'use-package
-                                '(projectile-switch-project-action 'projectile-dired nil nil "Customized with use-package projectile")))
-  (with-eval-after-load 'projectile
-    (projectile-mode 1)
-    (when (executable-find "ghq")
-      (setq projectile-known-projects (mapcar
-                                       (lambda (x)
-                                         (abbreviate-file-name x))
-                                       (split-string
-                                        (shell-command-to-string "ghq list --full-path")))))
-    (defun projectile-project-find-function (dir)
-      (let* ((root (projectile-project-root dir)))
-        (and root
-             (cons 'transient root))))
-
-    (with-eval-after-load 'project
-      (add-to-list 'project-find-functions 'projectile-project-find-function))
-
-    (if (fboundp 'diminish)
-        (diminish 'projectile-mode)))
-
-  (bind-key "C-c p"
-            #'(lambda nil
-                (interactive)
-                (use-package-autoload-keymap 'projectile-command-map 'projectile nil))))
-
-(leaf lsp-mode
-  :doc "LSP mode"
-  :req "emacs-26.1" "dash-2.18.0" "f-0.20.0" "ht-2.3" "spinner-1.7.3" "markdown-mode-2.3" "lv-0"
-  :tag "languages" "emacs>=26.1"
-  :url "https://github.com/emacs-lsp/lsp-mode"
-  :added "2021-12-08"
-  :emacs>= 26.1
-  :ensure t
-  :init (yas-global-mode)
-  :commands lsp
-  :hook
-  (rust-mode-hook . lsp)
-  :custom
-  ((lsp-enable-snippet . t)
-   (lsp-enable-indentation . nil)
-   (lsp-prefer-flymake . nil)
-   (lsp-document-sync-method . 'incremental)
-   (lsp-inhibit-message . t)
-   (lsp-message-project-root-warning . t)
-   (create-lockfiles . nil)
-   (lsp-file-watch-threshold .nil)
-   ( lsp-prefer-capf . t)
-   (lsp-rust-server . 'rust-analyzer))
-  :preface (global-unset-key (kbd "C-l"))
-  :bind
-  (("C-l C-l"  . lsp)
-   ("C-l h"    . lsp-describe-session)
-   ("C-l t"    . lsp-goto-type-definition)
-   ("C-l r"    . lsp-rename)
-   ("C-l <f5>" . lsp-workspace-restart)
-   ("C-l l"    . lsp-lens-mode)))
-
-(leaf lsp-ui
-  :doc "UI modules for lsp-mode"
-  :req "emacs-26.1" "dash-2.18.0" "lsp-mode-6.0" "markdown-mode-2.3"
-  :tag "tools" "languages" "emacs>=26.1"
-  :url "https://github.com/emacs-lsp/lsp-ui"
-  :added "2021-12-08"
-  :emacs>= 26.1
-  :ensure t
-  :commands lsp-ui-mode
-  :after lsp-mode
-  :custom
-  ;; lsp-ui-doc
-  (lsp-ui-doc-enable . t)
-  (lsp-ui-doc-header . t)
-  (lsp-ui-doc-include-signature . t)
-  (lsp-ui-doc-position . 'at-point);; top, bottom, or at-point
-  (lsp-ui-doc-max-width . 150)
-  (lsp-ui-doc-max-height . 30)
-  (lsp-ui-doc-use-childframe . t)
-  (lsp-ui-doc-use-webkit . nil)
-  ;; lsp-ui-flycheck
-  (lsp-ui-flycheck-enable . t)
-  ;; lsp-ui-sideline
-  (lsp-ui-sideline-enable . nil)
-  (lsp-ui-sideline-ignore-duplicate . t)
-  (lsp-ui-sideline-show-symbol . nil)
-  (lsp-ui-sideline-show-hover . nil)
-  (lsp-ui-sideline-show-diagnostics . nil)
-  (lsp-ui-sideline-show-code-actions . nil)
-  ;; lsp-ui-imenu
-  (lsp-ui-imenu-enable . nil)
-  (lsp-ui-imenu-kind-position . 'top)
-  ;; lsp-ui-peek
-  (lsp-ui-peek-enable . t)
-  (lsp-ui-peek-always-show . t)
-  (lsp-ui-peek-peek-height . 30)
-  (lsp-ui-peek-list-width . 30)
-  (lsp-ui-peek-fontify . 'always)
-  :hook
-  (lsp-mode-hook . lsp-ui-mode)
-  :bind
-  (("C-l s"   . lsp-ui-sideline-mode)
-   ("C-l C-d" . lsp-ui-peek-find-definitions)
-   ("C-l C-r" . lsp-ui-peek-find-references))
-  :after lsp-mode markdown-mode)
 
 (provide 'init)
 
