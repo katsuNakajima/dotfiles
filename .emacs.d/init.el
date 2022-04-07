@@ -581,6 +581,26 @@
           ("C-m" . newline-and-indent)))
   :mode ("\\.yml\\'"))
 
+(leaf affe
+  :doc "Asynchronous Fuzzy Finder for Emacs"
+  :req "emacs-27.1" "consult-0.16"
+  :tag "emacs>=27.1"
+  :url "https://github.com/minad/affe"
+  :added "2022-04-08"
+  :emacs>= 27.1
+  :ensure t
+  :after consult)
+
+(leaf consult-ghq
+  :doc "Ghq interface using consult"
+  :req "emacs-26.1" "consult-0.8" "affe-0.1"
+  :tag "ghq" "consult" "usability" "convenience" "emacs>=26.1"
+  :url "https://github.com/tomoya/consult-ghq"
+  :added "2022-04-08"
+  :emacs>= 26.1
+  :ensure t
+  :after consult affe)
+
 (provide 'init)
 
 ;; Local Variables:
