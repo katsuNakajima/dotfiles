@@ -38,6 +38,11 @@ export GEM_HOME=$HOME/.gem
 export GOPATH=$HOME/.go
 export GO111MODULE=on
 
+#nvm
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
