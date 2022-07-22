@@ -3,7 +3,7 @@ sudo -E apt update && sudo -E apt install ibus-mozc zsh tilix vim tmux xsel xcli
 
 # Rust and Rust-based-packages
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cargo install cargo-edit cargo-make cargo-atcoder cross exa
+cargo install cargo-edit cargo-make cargo-atcoder cargo-watch cross exa
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 # Golang and Go-based-packages
