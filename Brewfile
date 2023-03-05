@@ -10,7 +10,6 @@ brew "bat"
 brew "binutils"
 brew "coreutils"
 brew "pkg-config"
-brew "emacs", link: false
 brew "cask"
 brew "ccls"
 brew "clang-format"
