@@ -51,6 +51,7 @@ export PATH="$PATH":"$HOME/fvm/default/bin"
 export PATH="${PYENV_ROOT}/bin:$PATH"
 export PATH=$GEM_HOME/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
+export PATH="$PATH:$HOME/.local/platform-tools"
 
 # python setup
 eval "$(pyenv init --path)"
