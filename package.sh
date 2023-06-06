@@ -3,7 +3,7 @@ sudo -E apt update && sudo -E apt install ibus-mozc zsh tilix vim tmux xsel xcli
 
 # Rust and Rust-based-packages
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cargo install cargo-edit cargo-make cargo-atcoder cargo-watch cross
+cargo install cargo-edit cargo-make cargo-atcoder cargo-watch cross cargo-clean-all cargo-cache cargo-update
 ## only linux
 cargo install exa bat fd-find ripgrep hexyl procs
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
