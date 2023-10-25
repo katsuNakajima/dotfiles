@@ -234,20 +234,20 @@
     :after consult flycheck)
   :global-minor-mode global-flycheck-mode)
 
-(leaf flycheck-posframe
-  :doc "Show flycheck error messages using posframe.el"
-  :req "flycheck-0.24" "emacs-26" "posframe-0.7.0"
-  :tag "emacs>=26"
-  :url "https://github.com/alexmurray/flycheck-posframe"
-  :added "2021-12-09"
-  :emacs>= 26
-  :ensure t
-  :config
-  (with-eval-after-load 'flycheck
-    (require 'flycheck-posframe nil nil)
-    (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
-  :global-minor-mode flycheck-posframe-mode
-  :after flycheck)
+;; (leaf flycheck-posframe
+;;   :doc "Show flycheck error messages using posframe.el"
+;;   :req "flycheck-0.24" "emacs-26" "posframe-0.7.0"
+;;   :tag "emacs>=26"
+;;   :url "https://github.com/alexmurray/flycheck-posframe"
+;;   :added "2021-12-09"
+;;   :emacs>= 26
+;;   :ensure t
+;;   :config
+;;   (with-eval-after-load 'flycheck
+;;     (require 'flycheck-posframe nil nil)
+;;     (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+;;   :global-minor-mode flycheck-posframe-mode
+;;   :after flycheck)
 
 (leaf company
   :doc "Modular text completion framework"
@@ -568,6 +568,34 @@
   :emacs>= 24.4
   :ensure t
   )
+
+(leaf rust-mode
+  :doc "A major-mode for editing Rust source code"
+  :req "emacs-25.1"
+  :tag "languages" "emacs>=25.1"
+  :url "https://github.com/rust-lang/rust-mode"
+  :added "2023-10-25"
+  :emacs>= 25.1
+  :ensure t)
+
+;; (leaf cargo
+;;   :doc "Emacs Minor Mode for Cargo, Rust's Package Manager."
+;;   :req "emacs-24.3" "markdown-mode-2.4"
+;;   :tag "tools" "emacs>=24.3"
+;;   :added "2023-10-25"
+;;   :emacs>= 24.3
+;;   :ensure t
+;;   :after markdown-mode)
+
+; プロジェクトルートをCargo.tomlのある場所として認識させるための関数
+(defun my/find-rust-project-root (dir)
+   (when-let ((root (locate-dominating-file dir "Cargo.toml")))
+     (list 'vc 'Git root)))
+
+(defun my/rust-mode-hook ()
+  (setq-local project-find-functions (list #'my/find-rust-project-root)))
+
+(add-hook 'rust-mode-hook #'my/rust-mode-hook)
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
