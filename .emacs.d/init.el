@@ -387,7 +387,7 @@
       (setq custom-enabled-themes (remq 'use-package custom-enabled-themes)))
     (custom-theme-set-variables 'use-package
                                 '(doom-modeline-buffer-file-name-style 'truncate-with-project nil nil "Customized with use-package doom-modeline")
-                                '(doom-modeline-icon t nil nil "Customized with use-package doom-modeline")
+                                '(doom-modeline-icon nil nil nil "Customized with use-package doom-modeline")
                                 '(doom-modeline-minor-modes nil nil nil "Customized with use-package doom-modeline"))))
 
 (leaf hide-mode-line
