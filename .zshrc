@@ -57,6 +57,7 @@ export PATH="$PATH:$HOME/.local/platform-tools"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 export PIPENV_VENV_IN_PROJECT=true
+source "$HOME/.rye/env"
 
 # for WSL permission
 umask 022
