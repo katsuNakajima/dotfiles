@@ -28,9 +28,6 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# pyenv root
-export PYENV_ROOT="${HOME}/.pyenv"
-
 # gem Home
 export GEM_HOME=$HOME/.gem
 
@@ -53,10 +50,7 @@ export PATH=$GEM_HOME/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 export PATH="$PATH:$HOME/.local/platform-tools"
 
-# python setup
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
-export PIPENV_VENV_IN_PROJECT=true
+# Python setup
 source "$HOME/.rye/env"
 
 # for WSL permission
@@ -104,5 +98,7 @@ fi
 # sharchip
 export STARSHIP_CONFIG=~/.starship/config.toml
 eval "$(starship init zsh)"
+
+# Volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
