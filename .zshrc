@@ -72,7 +72,7 @@ alias crh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 
 # histry with peco
 function peco-history-selection() {
-    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
