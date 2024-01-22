@@ -31,22 +31,25 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # gem Home
 export GEM_HOME=$HOME/.gem
 
-#GOPATH
+# GOPATH
 export GOPATH=$HOME/.go
 export GO111MODULE=on
+
+# Python Rye setup
+source "$HOME/.rye/env"
+
+# Node.js Volta setup
+export VOLTA_HOME="$HOME/.volta"
 
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/fvm/default/bin"
-export PATH="${PYENV_ROOT}/bin:$PATH"
 export PATH=$GEM_HOME/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 export PATH="$PATH:$HOME/.local/platform-tools"
-
-# Python setup
-source "$HOME/.rye/env"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # cdr with peco
 function peco-cdr () {
@@ -101,7 +104,3 @@ fi
 # sharchip
 export STARSHIP_CONFIG=~/.starship/config.toml
 eval "$(starship init zsh)"
-
-# Volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
