@@ -1,0 +1,2 @@
+# for WSL permission
+umask 022

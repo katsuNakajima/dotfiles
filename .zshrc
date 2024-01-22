@@ -53,9 +53,6 @@ export PATH="$PATH:$HOME/.local/platform-tools"
 # Python setup
 source "$HOME/.rye/env"
 
-# for WSL permission
-umask 022
-
 # cdr with peco
 function peco-cdr () {
     local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
