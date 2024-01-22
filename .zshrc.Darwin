@@ -10,3 +10,17 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^W' peco-cdr
+
+# zsh-completions
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    autoload -Uz compinit
+    compinit
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
+fi
+
+# zsh-syntax-highlighting
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
