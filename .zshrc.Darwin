@@ -1,15 +1,19 @@
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
-
-# cdr with peco
-function peco-cdr () {
-    local selected_dir="$(cdr -l | gsed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
-        zle accept-line
-    fi
-}
-zle -N peco-cdr
-bindkey '^W' peco-cdr
+# GNU utils command Path
+PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/diffutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
+# GNU utils manpage Path
+MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
+MANPATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnuman:$MANPATH"
+MANPATH="$HOMEBREW_PREFIX/opt/diffutils/libexec/gnuman:$MANPATH"
+MANPATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnuman:$MANPATH"
+MANPATH="$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnuman:$MANPATH"
+MANPATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnuman:$MANPATH"
+MANPATH="$HOMEBREW_PREFIX/opt/gawk/libexec/gnuman:$MANPATH"
 
 # zsh-completions
 if type brew &>/dev/null; then
