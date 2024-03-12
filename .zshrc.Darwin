@@ -1,3 +1,6 @@
+# nodebrew Path
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 # GNU utils command Path
 PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
