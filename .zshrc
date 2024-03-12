@@ -38,9 +38,6 @@ export GO111MODULE=on
 # Python Rye setup
 source "$HOME/.rye/env"
 
-# Node.js Volta setup
-export VOLTA_HOME="$HOME/.volta"
-
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -49,7 +46,6 @@ export PATH="$PATH":"$HOME/fvm/default/bin"
 export PATH=$GEM_HOME/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 export PATH="$PATH:$HOME/.local/platform-tools"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 # cdr with peco
 function peco-cdr () {
