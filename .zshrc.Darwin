@@ -1,5 +1,5 @@
-# nodebrew Path
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+# nodenv init
+eval "$(nodenv init -)"
 
 # GNU utils command Path
 PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
