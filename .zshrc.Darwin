@@ -1,6 +1,9 @@
 # nodenv init
 eval "$(nodenv init -)"
 
+# dart completion
+[[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
+
 # GNU utils command Path
 PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
