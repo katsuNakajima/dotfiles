@@ -1,6 +1,10 @@
 # nodenv init
 eval "$(nodenv init -)"
 
+# PostgreSQL Path
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
 # dart completion
 [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 
