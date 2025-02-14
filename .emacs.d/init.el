@@ -14,39 +14,54 @@
           (expand-file-name
            (file-name-directory (or load-file-name byte-compile-current-file))))))
 
+;; straight.el settings
+(setq straight-repository-branch "develop") ;; use the develop branch of straight.el
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(setq straight-vc-git-default-clone-depth 1) ;; shallow clone
+
 ;; leaf settings
 (eval-and-compile
-  (customize-set-variable
-   'package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
-                       ("melpa" . "https://melpa.org/packages/")
-                       ("org"   . "https://orgmode.org/elpa/")))
-  (package-initialize)
-  (unless (package-installed-p 'leaf)
-    (package-refresh-contents)
-    (package-install 'leaf))
-
-  (leaf leaf-keywords
-    :ensure t
-    :init
-    ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
-    (leaf hydra :ensure t)
-    (leaf el-get :ensure t)
-    (leaf blackout :ensure t)
-    :config
-    ;; initialize leaf-keywords.el
-    (leaf-keywords-init)))
+  (straight-use-package 'leaf)
+  (straight-use-package 'leaf-keywords)
+  (leaf-keywords-init)
+  )
 
 (leaf leaf
-  :config
-  (leaf leaf-convert :ensure t)
-  (leaf leaf-tree
-    :ensure t
-    :custom ((imenu-list-size . 30)
-             (imenu-list-position . 'left))))
+  :require t
+  :init
+  (leaf leaf-convert
+    :straight t
+    )
 
-(leaf macrostep
-  :ensure t
-  :bind (("C-c e" . macrostep-expand)))
+  (leaf leaf-tree
+    :straight t
+    :blackout t
+    :custom
+    (imenu-list-position . 'left)
+    )
+  )
+
+;; Blackout
+(leaf blackout
+  :leaf-defer nil
+  :straight t
+  :config
+  ;; shut up eldoc in modeline
+  (leaf eldoc :blackout t)
+  )
 
 ;; Emacs settings
 
@@ -160,7 +175,7 @@
   :tag "matching" "emacs>=24.5"
   :url "https://github.com/abo-abo/swiper"
   :emacs>= 24.5
-  :ensure t
+  :straight t
   :blackout t
   :leaf-defer nil
   :custom ((ivy-initial-inputs-alist . nil)
@@ -173,7 +188,7 @@
     :tag "matching" "emacs>=24.5"
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
-    :ensure t
+    :straight t
     :bind (("C-s" . swiper)))
 
   (leaf counsel
@@ -182,7 +197,7 @@
     :tag "tools" "matching" "convenience" "emacs>=24.5"
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
-    :ensure t
+    :straight t
     :blackout t
     :bind (("C-S-s" . counsel-imenu)
            ("C-x C-r" . counsel-recentf))
@@ -196,7 +211,7 @@
   :tag "extensions" "emacs>=25.1"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :custom ((prescient-aggressive-file-save . t))
   :global-minor-mode prescient-persist-mode)
 
@@ -206,7 +221,7 @@
   :tag "extensions" "emacs>=25.1"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :after prescient ivy
   :custom ((ivy-prescient-retain-classic-highlighting . t))
   :global-minor-mode t)
@@ -217,7 +232,7 @@
   :tag "minor-mode" "tools" "languages" "convenience" "emacs>=24.3"
   :url "http://www.flycheck.org"
   :emacs>= 24.3
-  :ensure t
+  :straight t
   :bind (("M-n" . flycheck-next-error)
          ("M-p" . flycheck-previous-error))
   :config
@@ -228,7 +243,7 @@
     :url "https://github.com/minad/consult"
     :added "2021-12-09"
     :emacs>= 26.1
-    :ensure t
+    :straight t
     :bind (:evil-normal-state-map
            ("<leader>ee" . consult-flycheck))
     :after consult flycheck)
@@ -241,7 +256,7 @@
 ;;   :url "https://github.com/alexmurray/flycheck-posframe"
 ;;   :added "2021-12-09"
 ;;   :emacs>= 26
-;;   :ensure t
+;;   :straight t
 ;;   :config
 ;;   (with-eval-after-load 'flycheck
 ;;     (require 'flycheck-posframe nil nil)
@@ -255,7 +270,7 @@
   :tag "matching" "convenience" "abbrev" "emacs>=24.3"
   :url "http://company-mode.github.io/"
   :emacs>= 24.3
-  :ensure t
+  :straight t
   :blackout t
   :leaf-defer nil
   :bind ((company-active-map
@@ -280,7 +295,7 @@
     :url "https://github.com/sebastiencs/company-box"
     :added "2021-12-08"
     :emacs>= 26.0
-    :ensure t
+    :straight t
     :require t
     :hook (company-mode-hook)))
 
@@ -290,7 +305,7 @@
   :tag "company" "development" "emacs>=24.1"
   :added "2020-03-25"
   :emacs>= 24.1
-  :ensure t
+  :straight t
   :after company
   :defvar company-backends
   :config
@@ -303,7 +318,7 @@
   :url "https://github.com/magit/magit"
   :added "2021-12-08"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :bind (("C-x g" . magit-status)))
 
 (leaf yasnippet
@@ -312,7 +327,7 @@
   :tag "emulation" "convenience"
   :url "http://github.com/joaotavora/yasnippet"
   :added "2021-12-08"
-  :ensure t
+  :straight t
   :require t
   :global-minor-mode yas-global-mode)
 
@@ -322,7 +337,7 @@
   :tag "snippets"
   :url "https://github.com/AndreaCrotti/yasnippet-snippets"
   :added "2021-12-09"
-  :ensure t
+  :straight t
   :require t)
 
 (leaf nyan-mode
@@ -330,7 +345,7 @@
   :tag "build something amazing" "pop tart cat" "scrolling" "lulz" "cat" "nyan"
   :url "https://github.com/TeMPOraL/nyan-mode/"
   :added "2021-12-08"
-  :ensure t
+  :straight t
   :config
   (nyan-mode 1))
 
@@ -341,7 +356,7 @@
   :url "https://github.com/domtronn/all-the-icons.el"
   :added "2021-12-08"
   :emacs>= 24.3
-  :ensure t
+  :straight t
   :require t)
 
 (leaf doom-themes
@@ -351,7 +366,7 @@
   :url "https://github.com/hlissner/emacs-doom-themes"
   :added "2021-12-08"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :custom-face ((doom-modeline-bar quote
                                    ((t
                                      (:background "#6272a4")))))
@@ -377,7 +392,7 @@
   :url "https://github.com/seagle0128/doom-modeline"
   :added "2021-12-08"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :hook (after-init-hook)
   :config
   (let ((custom--inhibit-theme-enable nil))
@@ -397,7 +412,7 @@
   :url "https://github.com/hlissner/emacs-hide-mode-line"
   :added "2021-12-08"
   :emacs>= 24.4
-  :ensure t
+  :straight t
   :hook (neotree-mode-hook imenu-list-minor-mode-hook minimap-mode-hook))
 
 (leaf all-the-icons-ivy-rich
@@ -407,7 +422,7 @@
   :url "https://github.com/seagle0128/all-the-icons-ivy-rich"
   :added "2021-12-08"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :config
   (with-eval-after-load 'ivy
     (all-the-icons-ivy-rich-mode 1)
@@ -420,7 +435,7 @@
   :url "https://github.com/Yevgnen/ivy-rich"
   :added "2021-12-08"
   :emacs>= 25.1
-  :ensure t
+  :straight t
   :config
   (with-eval-after-load 'ivy
     (ivy-rich-mode 1)
@@ -432,7 +447,7 @@
   :tag "convenience"
   :url "https://github.com/Malabarba/beacon"
   :added "2021-12-08"
-  :ensure t
+  :straight t
   :init
   (let ((custom--inhibit-theme-enable nil))
     (unless (memq 'use-package custom-known-themes)
@@ -452,7 +467,7 @@
   :url "https://github.com/emacsorphanage/git-gutter"
   :added "2021-12-08"
   :emacs>= 24.4
-  :ensure t
+  :straight t
   :custom-face ((git-gutter:modified quote
                                      ((t
                                        (:background "#f1fa8c"))))
@@ -483,7 +498,7 @@
   :url "https://github.com/DarthFennec/highlight-indent-guides"
   :added "2021-12-08"
   :emacs>= 24.1
-  :ensure t
+  :straight t
   :hook (prog-mode-hook yaml-mode-hook)
   :config
   (let ((custom--inhibit-theme-enable nil))
@@ -504,7 +519,7 @@
   :tag "tools" "lisp" "convenience" "faces"
   :url "https://github.com/Fanael/rainbow-delimiters"
   :added "2021-12-08"
-  :ensure t
+  :straight t
   :hook (prog-mode-hook))
 
 (leaf which-key
@@ -514,7 +529,7 @@
   :url "https://github.com/justbur/emacs-which-key"
   :added "2021-12-08"
   :emacs>= 24.4
-  :ensure t
+  :straight t
   :hook (after-init-hook)
   :config
   (with-eval-after-load 'which-key
@@ -528,7 +543,7 @@
   :url "https://github.com/abo-abo/avy"
   :added "2021-12-08"
   :emacs>= 24.1
-  :ensure t
+  :straight t
   )
 
 (leaf ace-window
@@ -537,7 +552,7 @@
   :tag "location" "window"
   :url "https://github.com/abo-abo/ace-window"
   :added "2021-12-08"
-  :ensure t
+  :straight t
   :bind (("C-'" . ace-window))
   :custom-face ((aw-leading-char-face quote
                                       ((t
@@ -549,7 +564,7 @@
   :tag "wp" "convenience" "emulations"
   :url "http://www.emacswiki.org/emacs/download/volatile-highlights.el"
   :added "2021-12-08"
-  :ensure t
+  :straight t
   :hook (after-init-hook)
   :custom-face ((vhl/default-face quote
                                   ((nil
@@ -566,7 +581,7 @@
   :url "http://github.com/DarwinAwardWinner/amx/"
   :added "2021-12-08"
   :emacs>= 24.4
-  :ensure t
+  :straight t
   )
 
 (leaf rust-mode
@@ -576,7 +591,7 @@
   :url "https://github.com/rust-lang/rust-mode"
   :added "2023-10-25"
   :emacs>= 25.1
-  :ensure t)
+  :straight t)
 
 ;; (leaf cargo
 ;;   :doc "Emacs Minor Mode for Cargo, Rust's Package Manager."
@@ -584,7 +599,7 @@
 ;;   :tag "tools" "emacs>=24.3"
 ;;   :added "2023-10-25"
 ;;   :emacs>= 24.3
-;;   :ensure t
+;;   :straight t
 ;;   :after markdown-mode)
 
 ; プロジェクトルートをCargo.tomlのある場所として認識させるための関数
