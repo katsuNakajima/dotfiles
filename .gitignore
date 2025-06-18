@@ -28,5 +28,6 @@
 .emacs.d/init.elc
 .emacs.d/custom.el
 .emacs.d/multisession/files/emoji/emoji--recent.value
+.emacs.d/projects
 Brewfile.lock.json
 .DS_Store
