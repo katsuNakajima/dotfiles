@@ -35,9 +35,6 @@ export GEM_HOME=$HOME/.gem
 export GOPATH=$HOME/.go
 export GO111MODULE=on
 
-# Python Rye setup
-source "$HOME/.rye/env"
-
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
