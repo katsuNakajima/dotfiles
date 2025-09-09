@@ -31,17 +31,13 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # gem Home
 export GEM_HOME=$HOME/.gem
 
-# GOPATH
-export GOPATH=$HOME/.go
-export GO111MODULE=on
-
 # 共通path設定
 export PATH="$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/fvm/default/bin"
 export PATH=$GEM_HOME/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
 export PATH="$PATH:$HOME/.local/platform-tools"
 
 # cdr with peco
