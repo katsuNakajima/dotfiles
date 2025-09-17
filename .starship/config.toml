@@ -4,5 +4,15 @@ add_newline = true
 truncation_length = 100
 truncate_to_repo = false
 
+[aws]
+symbol = '🅰 '
+
 [aws.region_aliases]
 ap-northeast-1 = "tokyo"
+
+[gcloud]
+symbol = '🅶 '
+format = 'on [$symbol$region]($style) '
+
+[gcloud.region_aliases]
+asia-northeast1 = "an1"
