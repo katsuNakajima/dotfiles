@@ -43,6 +43,7 @@ brew "libopusenc"
 brew "libpq", link: true
 brew "markdown"
 brew "moreutils"
+brew "mosquitto"
 brew "neofetch"
 brew "ninja"
 brew "nmap"
