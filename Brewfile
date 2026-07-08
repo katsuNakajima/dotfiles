@@ -1,5 +1,6 @@
 tap "coderabbitai/tap"
 tap "dart-lang/dart", trusted: true
+tap "hashicorp/tap", trusted: true
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "microsoft/git", trusted: true
@@ -124,7 +125,7 @@ brew "swagger-codegen"
 # CI-Friendly tool to document a database
 brew "tbls"
 # Tool to build, change, and version infrastructure
-brew "terraform"
+brew "hashicorp/tap/terraform"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -149,8 +150,6 @@ brew "coderabbitai/tap/git-gtr", link: false, trusted: true
 brew "dart-lang/dart/dart", trusted: true
 # YAMAMOTO Mitsuharu's Mac port of GNU Emacs
 cask "railwaycat/emacsmacport/emacs-mac"
-# Cross-platform Git credential storage for multiple hosting providers
-cask "git-credential-manager"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
 # Terminal emulator as alternative to Apple's Terminal app
