@@ -75,6 +75,8 @@ brew "hub"
 brew "icu4c@76"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Cryptographic library based on the code from GnuPG
+brew "libgcrypt"
 # Convenience library for creating .opus files
 brew "libopusenc"
 # Postgres C API library
@@ -147,6 +149,10 @@ brew "coderabbitai/tap/git-gtr", link: false, trusted: true
 brew "dart-lang/dart/dart", trusted: true
 # YAMAMOTO Mitsuharu's Mac port of GNU Emacs
 cask "railwaycat/emacsmacport/emacs-mac"
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Reverse proxy, secure introspectable tunnels to localhost
