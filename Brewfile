@@ -1,6 +1,6 @@
+tap "aeroxy/tap"
 tap "coderabbitai/tap"
 tap "dart-lang/dart", trusted: true
-tap "hashicorp/tap", trusted: true
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "microsoft/git", trusted: true
@@ -125,7 +125,7 @@ brew "swagger-codegen"
 # CI-Friendly tool to document a database
 brew "tbls"
 # Tool to build, change, and version infrastructure
-brew "hashicorp/tap/terraform"
+brew "terraform"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -144,6 +144,8 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Fast AST-based code navigation, search, rewrite, and log squeezing
+brew "aeroxy/tap/ast-bro", trusted: true
 # Git worktree manager with editor and AI tool integration
 brew "coderabbitai/tap/git-gtr", link: false, trusted: true
 # SDK
