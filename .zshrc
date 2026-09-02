@@ -1,6 +1,9 @@
 # loading OS settings
 [ -f $HOME/.zshrc.`uname` ] && source $HOME/dotfiles/.zshrc.`uname`
 
+# loading machine-local settings (not tracked in dotfiles repo)
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
